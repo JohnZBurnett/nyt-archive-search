@@ -14,7 +14,7 @@ const articleSchema = new Schema({
     document_type: String,
     word_count: Number,
     pdf_url: String
-})
+});
 
 const Article = mongoose.model('articles', articleSchema); 
 
