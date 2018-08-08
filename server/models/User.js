@@ -6,5 +6,11 @@ const userSchema = new Schema({
 }); 
 
 const User = mongoose.model('users', userSchema); 
+const findAllUsers = function() {
+    return User.find({}); 
+}
 
-module.exports = User; 
+module.exports = {
+    User,
+    findAllUsers
+}
