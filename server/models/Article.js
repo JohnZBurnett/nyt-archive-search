@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const articleSchema = new Schema({
     web_url: String,
-    snipped: String,
+    snippet: String,
     abstract: String,
     print_page: String,
     headline: {
