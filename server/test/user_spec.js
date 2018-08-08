@@ -15,14 +15,10 @@ before((done) => {
     done(); 
 }); 
 
-beforeEach( async (done) => {
-    mongoose.connection.collections.users.drop( () => { 
-    });
-
-    const buffy = new User({ name: 'Buffy' });
-    const spike = new User({ name: 'Spike' });
-    const giles = new User({ name: 'Giles' });
-    buffy.save().then( spike.save() ).then( giles.save() ).then( done() );
+beforeEach( async () => {
+    await new User({ name: 'Buffy' }).save();
+    await new User({ name: 'Spike' }).save();
+    await new User({ name: 'Giles' }).save();
 })
 
 describe('Creating and saving user records', () => {
@@ -46,9 +42,12 @@ describe('Finding user records', () => {
     })
 })
 
-after( (done) => {
-    mongoose.connection.close(); 
+afterEach( (done) => {
+    mongoose.connection.collections.users.drop( () => { 
+    });
     done(); 
 }); 
+
+mongoose.connection.close(); 
 
 
