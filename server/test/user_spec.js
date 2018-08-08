@@ -15,7 +15,7 @@ before((done) => {
     done(); 
 }); 
 
-beforeEach( (done) => {
+beforeEach( async (done) => {
     mongoose.connection.collections.users.drop( () => { 
     });
 
@@ -47,7 +47,8 @@ describe('Finding user records', () => {
 })
 
 after( (done) => {
-    mongoose.connection.close(done); 
+    mongoose.connection.close(); 
+    done(); 
 }); 
 
 
