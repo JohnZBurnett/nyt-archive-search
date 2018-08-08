@@ -1,8 +1,7 @@
-const log = require('why-is-node-running'); 
 const mongoose = require('mongoose'); 
 const should = require('chai').should(); 
 const {User,} = require('../models/User');
-const keys = require('../config/keys')
+const keys = require('../config/keys');
 
 // this allegedly fixes the Mongoose promise deprecation - let's check that later
 // mongoose.Promise = global.Promise; 

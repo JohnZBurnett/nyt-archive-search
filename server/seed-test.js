@@ -24,12 +24,14 @@ const start = async () => {
 
 start(); 
 
-async () => {
-    let result = await axios.get(`https://api.nytimes.com/svc/archive/v1/1943/6.json`, {
+(async () => {
+    for (let i = 4; i <= 12; i++) {
+      let result = await axios.get(`https://api.nytimes.com/svc/archive/v1/1943/${i}.json`, {
         'headers': {
           'api-key': "f7aa7845a7624f2babd861b64aa6a116"
           }
-        });
-    console.log(result.data); 
-}
-axios.get('https://api.nytimes.com/svc/archive/v1/1942/6.json')
+      });
+      console.log(result.data.response.docs[0]); 
+    }
+    
+})();
