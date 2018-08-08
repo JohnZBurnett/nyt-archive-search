@@ -10,7 +10,12 @@ const articleSchema = new Schema({
         main: String
     },
     keywords: [],
-    pub_date: String,
+    pub_date: {
+        full_date: String,
+        year: String,
+        month: String,
+        day: String
+    },
     document_type: String,
     word_count: Number,
     pdf_url: String
