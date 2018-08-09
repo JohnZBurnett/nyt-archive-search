@@ -1,1 +1,0 @@
-import { GET_CURRENT_ARTICLE, UPDATE_CURRENT_ARTICLE } from '../actions/actionTypes';
