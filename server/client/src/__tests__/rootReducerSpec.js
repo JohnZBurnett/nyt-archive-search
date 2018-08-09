@@ -4,7 +4,8 @@ import { updateCurrentArticle, saveArticle } from '../actions/index'
 describe('rootReducer', () => {
     const initialState = {
         placeholder: 'placeholder',
-        userSavedArticles: [{ title: 'placeholder'}]
+        userSavedArticles: [{ title: 'placeholder'}],
+        currentArticle: {}
     }; 
     const dummyAction = {
         type: "DUMMY_ACTION",
@@ -15,16 +16,17 @@ describe('rootReducer', () => {
     });
 
     it('updates the current article in state', () => {
-        expect(rootReducer(initialState, updateCurrentArticle('dummy article'))).toEqual({
-            ...initialState, currentArticle: 'dummy article'
+        expect(rootReducer(initialState, updateCurrentArticle({title: 'dummy article'}))).toEqual({
+            ...initialState, currentArticle: {title: 'dummy article'}
         })
     });
 
-    it('adds the newly saved article to the list of saved articles', () => {
-        expect(rootReducer(initialState, saveArticle({title: 'save test title'})).toEqual(
+    it('adds the saved article successfully', () => {
+        expect(rootReducer(initialState, saveArticle({title: 'dummy title'}))).toEqual(
             {
-            ...initialState, userSavedArticles: [...initialState.userSavedArticles, {title: 'save test title'}]
-        }
-      ))
+                ...initialState, userSavedArticles: [...initialState.userSavedArticles, {title: 'dummy title'}]
+            }
+        )
     })
-})
+
+  })
