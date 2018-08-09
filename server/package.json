@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "mocha"
   },
   "author": "",
@@ -17,7 +21,9 @@
   "devDependencies": {
     "axios": "^0.18.0",
     "chai": "^4.1.2",
+    "concurrently": "^3.6.1",
     "mocha": "^5.2.0",
+    "nodemon": "^1.18.3",
     "request": "^2.87.0",
     "supertest": "^3.1.0",
     "why-is-node-running": "^2.0.2"
