@@ -2,11 +2,14 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const Article = require('./models/Article'); 
 const express = require('express');
-const PORT = process.env.PORT || 5000; 
+const PORT = process.env.PORT || 5000;
+const cors = require('cors');  
 
 mongoose.connect(keys.MONGO_DEV_URI);
 
 const app = express(); 
+app.use(cors()); 
+
 require('./routes/apiRoutes')(app); 
 
 app.listen(PORT); 

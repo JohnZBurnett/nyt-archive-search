@@ -2,7 +2,7 @@ import { UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, FILTER_ARTICLES} from '../actions
 
 
 
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = {}, action) => {
     switch(action.type) {
         case UPDATE_CURRENT_ARTICLE:
           return {
