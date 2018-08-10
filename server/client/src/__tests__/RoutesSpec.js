@@ -8,6 +8,8 @@ import Routes from '../components/Routes';
 import ArticleIndex from '../components/ArticleIndex';
 import ArticleDetail from '../components/ArticleDetail';
 import SavedArticles from '../components/SavedArticles'; 
+import Register from '../components/Register';
+import Login from '../components/Login'; 
 import App from '../App';
 
 describe('BrowserRouter', () => {
@@ -36,7 +38,7 @@ describe('BrowserRouter', () => {
             <MemoryRouter initialEntries={['/index']}>
               <Routes />
             </MemoryRouter>
-        )
+        );
 
         expect(wrapper.find(ArticleIndex)).toHaveLength(1); 
     })
@@ -46,7 +48,7 @@ describe('BrowserRouter', () => {
             <MemoryRouter initialEntries={['/detail']}>
               <Routes />
             </MemoryRouter>
-        )
+        );
         
         expect(wrapper.find(ArticleDetail)).toHaveLength(1);
     })
@@ -56,8 +58,28 @@ describe('BrowserRouter', () => {
             <MemoryRouter initialEntries={['/saved']}>
               <Routes />
             </MemoryRouter>
-        )
+        );
 
         expect(wrapper.find(SavedArticles)).toHaveLength(1); 
+    })
+
+    it('should show the Login page when given the correct URL', () => {
+        const wrapper = mount(
+            <MemoryRouter initialEntries={['/login']}>
+              <Routes />
+            </MemoryRouter>
+        );
+
+        expect(wrapper.find(Login)).toHaveLength(1);
+    })
+
+    it('should show the Register page when given the correct URL', () => {
+        const wrapper = mount(
+            <MemoryRouter initialEntries={['/register']}>
+              <Routes />
+            </MemoryRouter>
+        );
+
+        expect(wrapper.find(Register)).toHaveLength(1); 
     })
 })
