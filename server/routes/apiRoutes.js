@@ -2,7 +2,6 @@ const Article = require('../models/Article');
 
 async function getAllArticlesFromDb() {
     const allArticles = await Article.find({
-        "pub_date.month": "01"
     }); 
     console.log("NUMBER OF ARTICLES FETCHED: ", allArticles.length); 
     return allArticles; 
