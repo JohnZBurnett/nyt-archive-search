@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
-import ErrorPage from './components/ErrorPage';  
+import Routes from './components/Routes';
 
 const App = () => {
   return(
     <div>
-      My App
       <BrowserRouter>
-        <Switch>
-          <Route component={ErrorPage} />
-        </Switch>
+        <Routes />
       </BrowserRouter>
     </div>
   )
