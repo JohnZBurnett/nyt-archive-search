@@ -1,9 +1,5 @@
 import { UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, FILTER_ARTICLES} from '../actions/actionTypes';
-const initialState = {
-    currentArticle: {},
-    userSavedArticles: {},
 
-};
 
 
 const rootReducer = (state = initialState, action) => {
