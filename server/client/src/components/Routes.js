@@ -7,7 +7,7 @@ import ArticleDetail from './ArticleDetail';
 import SavedArticles from './SavedArticles'; 
 import Login from './Login';
 import Register from './Register';
-import App from '../App'
+import App from '../App';
 
 const Routes = () => {
     return(

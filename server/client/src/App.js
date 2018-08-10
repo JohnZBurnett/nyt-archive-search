@@ -16,16 +16,22 @@ const mapDispatchToProps = function(dispatch) {
     }
   )
 }
-const App = (props) => {
-  props.fetchArticlesFromApi(); 
-  return(
-    <div>
+class App extends Component {
+  
+  componentDidMount() {
+    this.props.fetchArticlesFromApi(); 
+  }
+  
+  render() {
+    return(<div>
       <BrowserRouter>
         <Routes />
       </BrowserRouter>
-    </div>
-  )
-};
+    </div>)
+  }
+    
+} 
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App); 
 

@@ -19,5 +19,6 @@ export const addArticlesFromFetch = articles => ({
 
 export const fetchArticlesFromApi = async (dispatch, getState) => {
     const articleResults = await axios.get('http://localhost:5000/articles'); 
-    console.log(articleResults[0]); 
+    dispatch(addArticlesFromFetch(articleResults.data));
+    console.log(articleResults);  
 }
