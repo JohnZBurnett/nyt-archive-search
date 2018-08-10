@@ -1,4 +1,4 @@
-import { UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, FILTER_ARTICLES} from '../actions/actionTypes';
+import { UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, FILTER_ARTICLES, ADD_ARTICLES_FROM_FETCH} from '../actions/actionTypes';
 
 
 
@@ -18,6 +18,11 @@ const rootReducer = (state = {}, action) => {
           const filteredList = state.articleList.filter( article => article.title.includes(action.payload));
           return {
               ...state, articleList: filteredList
+          }
+
+        case ADD_ARTICLES_FROM_FETCH:
+          return {
+              ...state, articleList: action.payload
           }
         default:
           return state

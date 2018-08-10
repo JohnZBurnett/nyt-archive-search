@@ -7,14 +7,14 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers'; 
 import thunk from 'redux-thunk'; 
-
+import { composeWithDevTools } from 'redux-devtools-extension'; 
 const initialState = {
     currentArticle: {},
     userSavedArticles: {},
     articleList: [],
 };
 
-const store = createStore(rootReducer, initialState, applyMiddleware(thunk)); 
+const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(thunk))); 
 
 ReactDOM.render(<Provider store={store}>
                     <App />
