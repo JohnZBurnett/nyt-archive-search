@@ -5,6 +5,9 @@ import { MemoryRouter } from 'react-router';
 import LandingPage from '../components/LandingPage';
 import ErrorPage from '../components/ErrorPage'; 
 import Routes from '../components/Routes'; 
+import ArticleIndex from '../components/ArticleIndex';
+import ArticleDetail from '../components/ArticleDetail';
+import SavedArticles from '../components/SavedArticles'; 
 import App from '../App';
 
 describe('BrowserRouter', () => {
@@ -26,5 +29,35 @@ describe('BrowserRouter', () => {
         );
         expect(wrapper.find(LandingPage)).toHaveLength(1);
         expect(wrapper.find(ErrorPage)).toHaveLength(0); 
+    })
+
+    it('should redirect to the index page when given the correct URL', () => {
+        const wrapper = mount(
+            <MemoryRouter initialEntries={['/index']}>
+              <Routes />
+            </MemoryRouter>
+        )
+
+        expect(wrapper.find(ArticleIndex)).toHaveLength(1); 
+    })
+
+    it('should redirect to the article detail page when given the correct URL', () => {
+        const wrapper = mount(
+            <MemoryRouter initialEntries={['/detail']}>
+              <Routes />
+            </MemoryRouter>
+        )
+        
+        expect(wrapper.find(ArticleDetail)).toHaveLength(1);
+    })
+
+    it('should redirect to the saved articles page when given the correct URL', () => {
+        const wrapper = mount(
+            <MemoryRouter initialEntries={['/saved']}>
+              <Routes />
+            </MemoryRouter>
+        )
+
+        expect(wrapper.find(SavedArticles)).toHaveLength(1); 
     })
 })
