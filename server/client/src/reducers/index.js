@@ -1,9 +1,10 @@
+import { UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, FILTER_ARTICLES} from '../actions/actionTypes';
 const initialState = {
     currentArticle: {},
     userSavedArticles: {},
 
 };
-import { UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, FILTER_ARTICLES} from '../actions/actionTypes'
+
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
@@ -15,6 +16,8 @@ const rootReducer = (state = initialState, action) => {
           return {
               ...state, userSavedArticles: [...state.userSavedArticles, action.payload]
           }
+        
+        // this probably shouldn't actually be used - we should filter in the component instead, so we don't overwrite the state 
         case FILTER_ARTICLES:
           const filteredList = state.articleList.filter( article => article.title.includes(action.payload));
           return {
