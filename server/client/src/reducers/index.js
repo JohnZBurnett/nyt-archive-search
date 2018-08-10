@@ -1,5 +1,9 @@
-const initialState = {};
-import { UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE} from '../actions/actionTypes'
+const initialState = {
+    currentArticle: {},
+    userSavedArticles: {},
+
+};
+import { UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, FILTER_ARTICLES} from '../actions/actionTypes'
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
@@ -10,6 +14,11 @@ const rootReducer = (state = initialState, action) => {
         case SAVE_ARTICLE:
           return {
               ...state, userSavedArticles: [...state.userSavedArticles, action.payload]
+          }
+        case FILTER_ARTICLES:
+          const filteredList = state.articleList.filter( article => article.title.includes(action.payload));
+          return {
+              ...state, articleList: filteredList
           }
         default:
           return state
