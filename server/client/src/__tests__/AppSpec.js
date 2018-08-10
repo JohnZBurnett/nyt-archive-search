@@ -23,6 +23,6 @@ describe('App', () => {
   })
 
   it('should render to static HTML', function() {
-    expect(render(< App />).text()).toEqual('My App'); 
+    expect(render(< App />).text()).toEqual('Welcome to 1943: A Year in the Times!'); 
   })
 })
