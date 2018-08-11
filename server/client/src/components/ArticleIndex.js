@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'; 
 import ArticleCard from './ArticleCard'; 
+import { updateCurrentArticle } from '../actions/index'; 
 
 const mapStateToProps = (state) => {
     return {
@@ -8,13 +9,17 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateCurrentArticle: (article) => dispatch(updateCurrentArticle(article))
+    }
+} ; 
 
-const ArticleIndex = ({articleList}) => {
+const ArticleIndex = ({articleList, updateCurrentArticle}) => {
 
-   
     const renderArticleCards = (articleList) => {
         console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
-        return articleList.map( article => <ArticleCard article={article} key={article._id}/>);
+        return articleList.map( article => <ArticleCard article={article} key={article._id} onClick={updateCurrentArticle}/>);
     }
     
     
@@ -23,4 +28,4 @@ const ArticleIndex = ({articleList}) => {
     );
 }
 
-export default connect(mapStateToProps)(ArticleIndex); 
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleIndex); 
