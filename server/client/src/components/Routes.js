@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment }from 'react';
 import { Route, Switch } from 'react-router-dom';
 import ErrorPage from './ErrorPage';  
 import LandingPage from './LandingPage'; 
@@ -8,9 +8,12 @@ import SavedArticles from './SavedArticles';
 import Login from './Login';
 import Register from './Register';
 import App from '../App';
+import Navbar  from './Navbar'; 
 
 const Routes = () => {
     return(
+        <Fragment>
+        <Navbar />
         <Switch>
             <Route exact path="/" component={LandingPage}/>
             <Route path="/index" component={ArticleIndex} />
@@ -20,6 +23,7 @@ const Routes = () => {
             <Route path="/register" component={Register} />
             <Route component={ErrorPage}/>
         </Switch>
+        </Fragment>
     )
 }
 

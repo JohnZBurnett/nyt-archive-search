@@ -21,7 +21,7 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchArticlesFromApi(); 
   }
-  
+
   render() {
     return(<div>
       <BrowserRouter>
