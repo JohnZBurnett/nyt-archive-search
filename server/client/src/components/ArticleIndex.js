@@ -1,9 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux'; 
+import ArticleCard from './ArticleCard'; 
 
-const ArticleIndex = (props) => {
+const mapStateToProps = (state) => {
+    return {
+        articleList: [...state.articleList.slice(0, 20)],
+    }
+}
+
+
+const ArticleIndex = ({articleList}) => {
+
+   
+    const renderArticleCards = (articleList) => {
+        console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
+    }
+    
+    
     return(
-        <div>I am an ArticleIndex placeholder.</div>
+        <div>{articleList.length > 0 ? renderArticleCards(articleList) : "Loading Articles"}</div>
     );
 }
 
