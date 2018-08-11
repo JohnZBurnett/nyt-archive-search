@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'; 
+import axios from 'axios'; 
 
 
 const mapStateToProps = (state) => {
@@ -12,6 +13,13 @@ const mapStateToProps = (state) => {
 
 const ArticleDetail = ({ article }) => {
     console.log("ARTICLE DETAIL ARTICLE: ", article); 
+
+    const fetchPdfUrl = async() => {
+        const results = await axios.get(article.web_url)
+        console.log("NYT SCRAPE RESULTS: ", results); 
+    }
+
+    fetchPdfUrl(); 
     return(
         <div>
             <h1>{article.headline.main}</h1>
