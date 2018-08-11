@@ -15,6 +15,11 @@ userSchema.methods.setPassword = function(password) {
     this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex'); 
 }
 
+userSchema.methods.validatePassword = function(password) {
+    const hash = crypto.pbkdf2Sync(password, this.salt, 1000, 512, 'sha512').toString('hex'); 
+    return this.hash === hash; 
+}
+
 const User = mongoose.model('users', userSchema); 
 const findAllUsers = function() {
     return User.find({}); 
