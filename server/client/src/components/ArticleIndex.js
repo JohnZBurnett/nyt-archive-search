@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'; 
 
 const ArticleIndex = (props) => {
     return(
@@ -6,4 +7,4 @@ const ArticleIndex = (props) => {
     );
 }
 
-export default ArticleIndex; 
+export default connect(mapStateToProps)(ArticleIndex); 
