@@ -14,7 +14,7 @@ const ArticleIndex = ({articleList}) => {
    
     const renderArticleCards = (articleList) => {
         console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
-        return articleList.map( article => <ArticleCard article={article} />);
+        return articleList.map( article => <ArticleCard article={article} key={article._id}/>);
     }
     
     
