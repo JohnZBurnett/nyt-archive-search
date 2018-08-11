@@ -39,7 +39,7 @@ function addArticleToDb(article) {
 
 (async () => {
   for (let i = 1; i <= 12; i++) {
-    let result = await axios.get(`https://api.nytimes.com/svc/archive/v1/1943/${i}.json`, {
+    let result = await axios.get(`https://api.nytimes.com/svc/archive/v1/1984/${i}.json`, {
       'headers': {
         'api-key': "f7aa7845a7624f2babd861b64aa6a116"
         }
