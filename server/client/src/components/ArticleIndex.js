@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'; 
 import ArticleCard from './ArticleCard'; 
 import { updateCurrentArticle } from '../actions/index'; 
+import { withRouter } from 'react-router-dom'; 
 
 const mapStateToProps = (state) => {
     return {
@@ -11,15 +12,23 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateCurrentArticle: (article) => dispatch(updateCurrentArticle(article))
+        updateCurrentArticle: (article) => {
+            dispatch(updateCurrentArticle(article));
+        }
+        
     }
 } ; 
 
-const ArticleIndex = ({articleList, updateCurrentArticle}) => {
+const ArticleIndex = ({articleList, updateCurrentArticle, history}) => {
+
+    const handleUpdatingCurrentArticle = (article) => {
+        updateCurrentArticle(article); 
+        history.push('/detail'); 
+    }
 
     const renderArticleCards = (articleList) => {
         console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
-        return articleList.map( article => <ArticleCard article={article} key={article._id} onClick={updateCurrentArticle}/>);
+        return articleList.map( article => <ArticleCard article={article} key={article._id} onClick={handleUpdatingCurrentArticle}/>);
     }
     
     
@@ -28,4 +37,4 @@ const ArticleIndex = ({articleList, updateCurrentArticle}) => {
     );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleIndex); 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ArticleIndex)); 
