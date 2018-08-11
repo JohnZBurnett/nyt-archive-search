@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.card {
+  border-style: solid;
+  border-color: red;
+  border-width: 2px;
+  margin: 10px 1px; 
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
