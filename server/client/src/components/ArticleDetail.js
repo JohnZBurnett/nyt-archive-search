@@ -13,7 +13,13 @@ const mapStateToProps = (state) => {
 const ArticleDetail = ({ article }) => {
     console.log("ARTICLE DETAIL ARTICLE: ", article); 
     return(
-        <div>I am an ArticleDetail placeholder.</div>
+        <div>
+            <h1>{article.headline.main}</h1>
+            <p>SNIPPET: {article.snippet}</p>
+
+            <a href={article.web_url}>Click here to read the article on the NYT Website</a>
+            <embed src="https://timesmachine.nytimes.com/timesmachine/1943/01/01/83892511.pdf" height="600" width="200"></embed>
+        </div>
     );
 }
 
