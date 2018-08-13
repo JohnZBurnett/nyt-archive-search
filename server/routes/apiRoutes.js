@@ -14,6 +14,10 @@ module.exports = (app) => {
         console.log("allArticlesFromDb ASSIGNED"); 
         res.json(allArticlesFromDb); 
     })
+
+    app.get('/api/login', async (req, res) => {
+        
+    })
 }; 
 
 
