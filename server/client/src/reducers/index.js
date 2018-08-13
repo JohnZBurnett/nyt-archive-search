@@ -24,6 +24,11 @@ const rootReducer = (state = {}, action) => {
           return {
               ...state, articleList: action.payload
           }
+
+        case FETCH_USER: 
+          return {
+              ...state, auth: action.payload || false
+          }
         default:
           return state
     }
