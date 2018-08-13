@@ -12,10 +12,10 @@ const Register = () => {
         <label>Password:</label>
         <input type="password" name="password"/>
     </div>
-    <div>
+    {/* <div>
         <label>Confirm Password:</label>
         <input type="password" name="confirm-password"/>
-    </div>
+    </div> */}
     <div>
         <input type="submit" value="Register"/>
     </div>

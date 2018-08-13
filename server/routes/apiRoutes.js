@@ -1,5 +1,6 @@
 const Article = require('../models/Article'); 
 const passport = require('passport'); 
+const User = require('../models/User').User; 
 
 async function getAllArticlesFromDb() {
     const allArticles = await Article.find({
@@ -22,9 +23,11 @@ module.exports = (app) => {
     app.post('/api/register', (req, res) => {
         console.log("REGISTER REQUEST BODY: ", req.body); 
 
-        if (req.body.password !== req.body.confirm-password) {
-            res.redirect('/'); 
-        }
+        // we'll put this back in later - hyphen was causing a problem
+
+        // if (req.body.password !== req.body.confirm-password) {
+        //     res.redirect('/'); 
+        // }
 
         const newUser = new User({
             username: req.body.username,
@@ -35,9 +38,9 @@ module.exports = (app) => {
             if(err) {
                 console.log(err);
             } else {
-                console.log('user' + user.username + 'saved.'); 
+                console.log('user' + newUser.username + 'saved.'); 
             }
-            req.login(user, function(err) {
+            req.login(newUser, function(err) {
                 if(err) {
                     console.log(err); 
                 }
