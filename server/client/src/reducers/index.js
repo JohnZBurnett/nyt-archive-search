@@ -1,4 +1,4 @@
-import { UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, FILTER_ARTICLES, ADD_ARTICLES_FROM_FETCH} from '../actions/actionTypes';
+import { UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, FILTER_ARTICLES, ADD_ARTICLES_FROM_FETCH, UPDATE_CURRENT_USER} from '../actions/actionTypes';
 
 
 
@@ -25,7 +25,7 @@ const rootReducer = (state = {}, action) => {
               ...state, articleList: action.payload
           }
 
-        case FETCH_USER: 
+        case UODATE_CURRENT_USER: 
           return {
               ...state, auth: action.payload || false
           }

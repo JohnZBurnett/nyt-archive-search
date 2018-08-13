@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'; 
 import { ADD_ARTICLES_FROM_FETCH } from '../actions/actionTypes';
 
+
+const mapStateToProps = function(state) {
+    return {
+        auth: state.auth
+    }
+}
 const Navbar = (props) => {
     return(
         <div>
@@ -14,4 +21,4 @@ const Navbar = (props) => {
     )
 }
 
-export default Navbar;
+export default connect(mapStateToProps)(Navbar);
