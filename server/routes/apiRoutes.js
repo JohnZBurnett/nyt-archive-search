@@ -63,6 +63,10 @@ module.exports = (app) => {
         res.setHeader('Access-Control-Allow-Credentials', 'true'); 
         res.send(req.user);  
     })
+
+    app.get('/api/current_article', (req, res) => {
+        
+    })
 }; 
 
 
