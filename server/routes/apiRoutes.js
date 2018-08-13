@@ -68,8 +68,9 @@ module.exports = (app) => {
     app.post('/api/current_article', async (req, res) => {
         console.log("REQUEST BODY: ", req.body); 
         // this needs to get an article web URL (passed into req body from frontend)
-        const resp = axios.get("https://timesmachine.nytimes.com/svc/tmach/v1/refer" + web_url.split(".html")[1]); 
+        const resp = await axios.get("https://timesmachine.nytimes.com/svc/tmach/v1/refer" + req.body.web_url.split(".html")[1]); 
         const pdf_url = resp.request.res.responseUrl.split(".html")[0]+".pdf";
+        console.log(pdf_url); 
         const body = {
             pdfUrl: pdf_url
         }

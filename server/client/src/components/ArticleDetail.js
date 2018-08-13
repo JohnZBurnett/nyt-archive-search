@@ -15,7 +15,7 @@ const ArticleDetail = ({ article }) => {
     console.log("ARTICLE DETAIL ARTICLE: ", article); 
 
     const fetchPdfUrl = async() => {
-        const results = await axios.get('http://localhost:5000/api/current_article', {
+        const results = await axios.post('http://localhost:5000/api/current_article', {
             web_url: article.web_url
         }); 
         console.log("NYT SCRAPE RESULTS: ", results); 
