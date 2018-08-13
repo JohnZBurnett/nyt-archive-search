@@ -19,6 +19,11 @@ module.exports = (app) => {
     app.post('/api/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login'})
     )
 
+    app.get('/api/logout', (req, res) => {
+        req.logout(); 
+        res.send(req.user); 
+    })
+
     app.get('/api/current_user', (req, res) => {
         console.log("CURRENT PASSPORT SESSION: ", req.session); 
         console.log("CURRENT USER: ", req.user);
