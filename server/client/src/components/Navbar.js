@@ -17,6 +17,7 @@ const Navbar = (props) => {
             <Link to="/detail">Detail</Link>
             <Link to="/login">Log In</Link>
             <Link to="/register">Sign Up</Link>
+            <a href="/api/logout">Log Out</a>
         </div>
     )
 }

@@ -17,7 +17,7 @@ mongoose.connect(keys.MONGO_DEV_URI);
 
 const app = express(); 
 
-// app.use(cors()); 
+app.use(cors()); 
 
 app.use(cookieSession({
     name: 'session',
