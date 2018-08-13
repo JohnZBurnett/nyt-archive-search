@@ -19,6 +19,33 @@ module.exports = (app) => {
     app.post('/api/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login'})
     )
 
+    app.post('/api/register', (req, res) => {
+        console.log("REGISTER REQUEST BODY: ", req.body); 
+
+        if (req.body.password !== req.body.confirm-password) {
+            res.redirect('/'); 
+        }
+
+        const newUser = new User({
+            username: req.body.username,
+            password: req.body.password
+        })
+
+        newUser.save(function(err) {
+            if(err) {
+                console.log(err);
+            } else {
+                console.log('user' + user.username + 'saved.'); 
+            }
+            req.login(user, function(err) {
+                if(err) {
+                    console.log(err); 
+                }
+                return res.redirect('/'); 
+            })
+        })
+    })
+
     app.get('/api/logout', (req, res) => {
         console.log("WE HIT THE LOGOUT ROUTE"); 
         req.logout(); 

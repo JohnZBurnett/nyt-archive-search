@@ -3,7 +3,7 @@ import React from 'react';
 const Register = () => {
     return(
         <div>
-            <form action="/api/login" method="post">
+            <form action="/api/register" method="post">
     <div>
         <label>Username:</label>
         <input type="text" name="username"/>

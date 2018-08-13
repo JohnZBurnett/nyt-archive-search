@@ -20,6 +20,9 @@
     },
     "/api/logout": {
       "target": "http://localhost:5000"
+    },
+    "/api/register": {
+      "target": "http://localhost:5000"
     }
   },
   
