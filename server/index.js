@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'); 
 const keys = require('./config/keys');
 const Article = require('./models/Article'); 
+const bodyParser = require('body-parser'); 
 require('./models/User'); 
 const express = require('express');
 const PORT = process.env.PORT || 5000;
@@ -12,6 +13,7 @@ mongoose.connect(keys.MONGO_DEV_URI);
 
 const app = express(); 
 app.use(cors()); 
+app.use(bodyParser.json()); 
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 

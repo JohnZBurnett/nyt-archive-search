@@ -16,10 +16,9 @@ module.exports = (app) => {
         res.json(allArticlesFromDb); 
     })
 
-    app.post('/api/login' /*, passport.authenticate('local', { failureRedirect: '/login'})*/,  
+    app.post('/api/login', passport.authenticate('local', { failureRedirect: '/login'}),  
         function(req, res) {
-            console.log("BODY PARSING: ", req.body); 
-            //res.redirect('/')
+            res.redirect('/')
         }
     )
 }; 
