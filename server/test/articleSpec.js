@@ -1,6 +1,6 @@
 const mongoose = require('mongoose'); 
 const should = require('chai').should(); 
-const Article = require('../models/Article');
+const Article = require('../models/Article').Article;
 const keys = require('../config/keys');
 
 before( (done) => {

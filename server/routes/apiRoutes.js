@@ -1,4 +1,4 @@
-const Article = require('../models/Article'); 
+const Article = require('../models/Article').Article; 
 const passport = require('passport'); 
 const User = require('../models/User').User; 
 const axios = require('axios'); 
