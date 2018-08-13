@@ -3,6 +3,7 @@ const keys = require('./config/keys');
 const Article = require('./models/Article'); 
 const bodyParser = require('body-parser'); 
 require('./models/User'); 
+require('./models/User').User; 
 const express = require('express');
 const PORT = process.env.PORT || 5000;
 const cors = require('cors');  

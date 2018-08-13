@@ -16,7 +16,7 @@ userSchema.methods.setPassword = function(password) {
 }
 
 userSchema.methods.validatePassword = function(password) {
-    const hash = crypto.pbkdf2Sync(password, this.salt, 1000, 512, 'sha512').toString('hex');
+    console.log("WE ARE IN THE VALIDATE PASSWORD. PASSWORD: ", password); 
     console.log("VALIDATING PASSWORD....");  
     return this.password === password; 
 }
