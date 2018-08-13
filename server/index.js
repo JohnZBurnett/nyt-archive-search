@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'); 
 const keys = require('./config/keys');
+const cookieSession = require('cookie-session'); 
 const Article = require('./models/Article'); 
 const bodyParser = require('body-parser'); 
 const session = require('express-session'); 
@@ -15,6 +16,12 @@ mongoose.connect(keys.MONGO_DEV_URI);
 
 const app = express(); 
 app.use(cors()); 
+app.use(
+    cookieSession({
+        maxAge: 30 * 24 * 60 * 60 * 1000, 
+        keys: keys.cookieKey
+    }) 
+)
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json()); 
 app.use(session({ secret: 'secret'})); 
