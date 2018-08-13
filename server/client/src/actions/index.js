@@ -17,8 +17,18 @@ export const addArticlesFromFetch = articles => ({
     type: ADD_ARTICLES_FROM_FETCH, payload: articles
 })
 
+export const updateCurrentUser = user => ({
+    type: UPDATE_CURRENT_USER, payload: user
+})
+
 export const fetchArticlesFromApi = async (dispatch, getState) => {
     const articleResults = await axios.get('http://localhost:5000/articles'); 
     dispatch(addArticlesFromFetch(articleResults.data));
     console.log(articleResults);  
+}
+
+export const fetchUser = async (dispatch, getState) => {
+    const userResults = await axios.get('http://localhost:5000/current_user'); 
+    dispatch(updateCurrentUser(userResults.data)); 
+    console.log("USER RESULTS: ", userResults);
 }
