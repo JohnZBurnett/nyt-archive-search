@@ -88,9 +88,9 @@ module.exports = (app) => {
         const newArticleCollection = new ArticleCollection({
             name: req.body.name,
             articles: [
-                savedArticle
             ]
         })
+        newArticleCollection.articles.push(savedArticle._id)
         newArticleCollection.save();
         res.send(newArticleCollection); 
     })
