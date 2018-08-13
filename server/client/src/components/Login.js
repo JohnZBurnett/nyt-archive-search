@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'; 
 
 class Login extends Component {
 
@@ -23,14 +24,18 @@ class Login extends Component {
         })
     }
 
-    handleFormSubmit = (event) => {
-        event.preventDefault(); 
-    }
+    // handleFormSubmit = async (event) => {
+    //     event.preventDefault(); 
+
+    //     const { username, password } = this.state;
+    //     let result = await axios.post('/api/login', { username, password }); 
+    //     console.log("RESULT :", result); 
+    // }
 
    render() {
     return(
         <div>
-            <form action="/api/login" method="post" onSubmit={this.handleFormSubmit}>
+            <form action="/api/login" method="post">
     <div>
         <label>Username:</label>
         <input type="text" name="username" onChange={this.handleUsernameChange}/>

@@ -16,10 +16,7 @@ module.exports = (app) => {
         res.json(allArticlesFromDb); 
     })
 
-    app.post('/api/login', passport.authenticate('local', { failureRedirect: '/login'}),  
-        function(req, res) {
-            res.redirect('/')
-        }
+    app.post('/api/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login'})
     )
 }; 
 
