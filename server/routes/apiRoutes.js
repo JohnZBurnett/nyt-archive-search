@@ -1,6 +1,7 @@
 const Article = require('../models/Article'); 
 const passport = require('passport'); 
 const User = require('../models/User').User; 
+const axios = require('axios'); 
 
 async function getAllArticlesFromDb() {
     const allArticles = await Article.find({
@@ -64,8 +65,14 @@ module.exports = (app) => {
         res.send(req.user);  
     })
 
-    app.get('/api/current_article', (req, res) => {
-        
+    app.get('/api/current_article', async (req, res) => {
+        // this needs to get an article web URL (passed into req body from frontend)
+        const resp = axios.get("https://timesmachine.nytimes.com/svc/tmach/v1/refer" + web_url.split(".html")[1]); 
+        const pdf_url = resp.request.res.responseUrl.split(".html")[0]+".pdf";
+        const body = {
+            pdfUrl: pdf_url
+        }
+        res.send(body); 
     })
 }; 
 
