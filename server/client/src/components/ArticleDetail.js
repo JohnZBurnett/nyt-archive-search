@@ -11,6 +11,14 @@ const mapStateToProps = (state) => {
     )
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return(
+        {
+            updateArticlePdf: (pdfUrl) => dispatch(pdfUrl); 
+        }
+    )
+}
+
 const ArticleDetail = ({ article }) => {
     console.log("ARTICLE DETAIL ARTICLE: ", article); 
 
@@ -33,4 +41,4 @@ const ArticleDetail = ({ article }) => {
     );
 }
 
-export default connect(mapStateToProps)(ArticleDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);
