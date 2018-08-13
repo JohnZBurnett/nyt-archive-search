@@ -5,7 +5,7 @@ const articleSchema = require('./Article').articleSchema;
 const articleCollectionSchema = new Schema({
     name: String,
     articles: [ {
-        type: mongoose.Schema.ObjectId, ref : 'articles'
+        type: mongoose.Schema.Types.ObjectId, ref: 'articles'
     }]
 });
 

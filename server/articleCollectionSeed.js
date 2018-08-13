@@ -4,13 +4,26 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 mongoose.connect(keys.MONGO_DEV_URI); 
 
-const thisArticle = Article.findById('5b6b46a5f013e485332a7108');
+(async function findArticle() {
+    const thisArticle = await Article.findById('5b6b46a5f013e485332a7108');
 
-const newCollection = new ArticleCollection({
-    name: 'foo',
-    articles: [
-       thisArticle
-    ]
-})
+    const newCollection = new ArticleCollection({
+        name: 'foo',
+        articles: []
+    })
+    newCollection.articles.push(thisArticle._id); 
 
-newCollection.save(); 
+    console.log("NEW COLLECTION: ", newCollection);
+    
+    newCollection.save(); 
+
+    ArticleCollection.findOne({ name: 'foo' })
+      .populate('articles')
+      .exec( function (err, articleCollection) {
+          if (err) return handleError(err);
+          console.log(articleCollection); 
+      }) 
+    console.log("POPULATED: ", populated); 
+})();
+ 
+
