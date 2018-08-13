@@ -16,15 +16,10 @@ mongoose.connect(keys.MONGO_DEV_URI);
 
 const app = express(); 
 app.use(cors()); 
-app.use(
-    cookieSession({
-        maxAge: 30 * 24 * 60 * 60 * 1000, 
-        keys: keys.cookieKey
-    }) 
-)
+
+app.use(session({ secret: 'dogs' })); 
 app.use(bodyParser.urlencoded());
-app.use(bodyParser.json()); 
-app.use(session({ secret: 'secret'})); 
+app.use(bodyParser.json());
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 
