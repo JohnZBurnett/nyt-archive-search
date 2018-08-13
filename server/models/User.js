@@ -18,6 +18,10 @@ userSchema.methods.setPassword = function(password) {
 userSchema.methods.validatePassword = function(password) {
     console.log("WE ARE IN THE VALIDATE PASSWORD. PASSWORD: ", password); 
     console.log("VALIDATING PASSWORD....");  
+    console.log("THIS IS :", this); 
+    console.log("THIS.PW: ", this.password); 
+    console.log("USER PASSWORD: ", this.password, "FORM PASSWORD: ", password); 
+    console.log("PASSWORDS EQUAL?", this.password === password); 
     return this.password === password; 
 }
 

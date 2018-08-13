@@ -17,6 +17,7 @@ passport.use(new LocalStrategy(
     function(username, password, done) {
         console.log("WE ARE IN THE LOCAL STRATEGY"); 
         User.findOne({ username: username}, function(err, user) {
+            console.log("USER IS...", user); 
             if (err) { 
                 return done(err); 
             }
@@ -24,8 +25,11 @@ passport.use(new LocalStrategy(
                 return done(null, false)
             }
 
-            if (!user.validatePassword(password)) { return done(null, false); }
-
+            if (!user.validatePassword(password)) { 
+                console.log("PASSWORD DIDN'T VALIDATE!");
+                return done(null, false); 
+            }
+            console.log("WE VALIDATED THE PASSWORD"); 
             return done(null, user); 
         })
     }
