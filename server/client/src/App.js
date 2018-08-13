@@ -13,7 +13,7 @@ const mapDispatchToProps = function(dispatch) {
   return (
     {
       fetchArticlesFromApi: () => dispatch(fetchArticlesFromApi),
-      fetchUser = () => dispatch(fetchUser) 
+      fetchUser: () => dispatch(fetchUser) 
     }
   )
 }

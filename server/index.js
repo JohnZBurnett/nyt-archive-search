@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const Article = require('./models/Article'); 
 const bodyParser = require('body-parser'); 
+const session = require('express-session'); 
 require('./models/User'); 
 require('./models/User').User; 
 const express = require('express');
@@ -16,6 +17,7 @@ const app = express();
 app.use(cors()); 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json()); 
+app.use(session({ secret: 'secret'})); 
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 

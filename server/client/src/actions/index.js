@@ -1,4 +1,4 @@
-import { UPDATE_CURRENT_ARTICLE, ADD_ARTICLES_FROM_FETCH, FILTER_ARTICLES, GET_CURRENT_USER, GET_CURRENT_ARTICLE, SAVE_ARTICLE} from './actionTypes';
+import { UPDATE_CURRENT_ARTICLE, ADD_ARTICLES_FROM_FETCH, FILTER_ARTICLES, UPDATE_CURRENT_USER, SAVE_ARTICLE} from './actionTypes';
 import axios from 'axios'; 
 
 export const updateCurrentArticle = article => ({
@@ -28,7 +28,7 @@ export const fetchArticlesFromApi = async (dispatch, getState) => {
 }
 
 export const fetchUser = async (dispatch, getState) => {
-    const userResults = await axios.get('http://localhost:5000/current_user'); 
+    const userResults = await axios.get('http://localhost:5000/api/current_user'); 
     dispatch(updateCurrentUser(userResults.data)); 
     console.log("USER RESULTS: ", userResults);
 }

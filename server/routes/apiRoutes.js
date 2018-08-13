@@ -18,6 +18,11 @@ module.exports = (app) => {
 
     app.post('/api/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login'})
     )
+
+    app.get('/api/current_user', (req, res) => {
+        console.log("CURRENT USER: ", req.user);
+        res.send(req.user);  
+    })
 }; 
 
 

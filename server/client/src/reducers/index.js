@@ -25,7 +25,7 @@ const rootReducer = (state = {}, action) => {
               ...state, articleList: action.payload
           }
 
-        case UODATE_CURRENT_USER: 
+        case UPDATE_CURRENT_USER: 
           return {
               ...state, auth: action.payload || false
           }
