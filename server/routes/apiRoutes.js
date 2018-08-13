@@ -94,6 +94,13 @@ module.exports = (app) => {
         newArticleCollection.save();
         res.send(newArticleCollection); 
     })
+
+    app.put('/api/collections/:id', (req, res) => {
+        const articleCollectionId = req.id;
+        const thisArticleCollection = ArticleCollection.findById(articleCollectionId); 
+        thisArticleCollection.articles = req.body.articles;
+        thisArticleCollection.save(); 
+    })
 }; 
 
 
