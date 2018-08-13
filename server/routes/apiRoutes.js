@@ -2,6 +2,7 @@ const Article = require('../models/Article').Article;
 const passport = require('passport'); 
 const User = require('../models/User').User; 
 const axios = require('axios'); 
+const ArticleCollection = require('../models/ArticleCollection').ArticleCollection; 
 
 async function getAllArticlesFromDb() {
     const allArticles = await Article.find({
@@ -75,6 +76,11 @@ module.exports = (app) => {
             pdfUrl: pdf_url
         }
         res.send(body); 
+    })
+
+    app.get('/api/collections', async (req, res) => {
+        const allArticleCollections = await ArticleCollection.find({}); 
+        res.send(allArticleCollections); 
     })
 }; 
 
