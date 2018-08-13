@@ -1,4 +1,5 @@
 const Article = require('../models/Article'); 
+const passport = require('passport'); 
 
 async function getAllArticlesFromDb() {
     const allArticles = await Article.find({
@@ -15,9 +16,11 @@ module.exports = (app) => {
         res.json(allArticlesFromDb); 
     })
 
-    app.get('/api/login', async (req, res) => {
-        
-    })
+    app.post('/api/login', passport.authenticate('local', { failureRedirect: '/login'}),  
+        function(req, res) {
+            res.redirect('/')
+        }
+    )
 }; 
 
 

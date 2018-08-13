@@ -16,8 +16,9 @@ userSchema.methods.setPassword = function(password) {
 }
 
 userSchema.methods.validatePassword = function(password) {
-    const hash = crypto.pbkdf2Sync(password, this.salt, 1000, 512, 'sha512').toString('hex'); 
-    return this.hash === hash; 
+    const hash = crypto.pbkdf2Sync(password, this.salt, 1000, 512, 'sha512').toString('hex');
+    console.log("VALIDATING PASSWORD....");  
+    return this.password === password; 
 }
 
 userSchema.methods.generateJWT = function() {

@@ -5,7 +5,8 @@ require('./models/User');
 const express = require('express');
 const PORT = process.env.PORT || 5000;
 const cors = require('cors');  
-const pass
+const passport = require('passport'); 
+require('./services/passport'); 
 
 mongoose.connect(keys.MONGO_DEV_URI);
 
@@ -17,6 +18,7 @@ app.use(passport.session());
 require('./routes/apiRoutes')(app); 
 
 app.listen(PORT); 
+
 // async function getAllArticles() {
 //     const allArticles = await Article.find({
 //     }); 
