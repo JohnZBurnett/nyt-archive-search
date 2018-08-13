@@ -82,6 +82,18 @@ module.exports = (app) => {
         const allArticleCollections = await ArticleCollection.find({}); 
         res.send(allArticleCollections); 
     })
+
+    app.post('/api/collections', async (req, res) => {
+        const savedArticle = await Article.findById(req.body.articleId); 
+        const newArticleCollection = new ArticleCollection({
+            name: req.body.name,
+            articles: [
+                savedArticle
+            ]
+        })
+        newArticleCollection.save();
+        res.send(newArticleCollection); 
+    })
 }; 
 
 
