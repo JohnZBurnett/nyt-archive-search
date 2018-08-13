@@ -5,7 +5,7 @@ const User = require('../models/User').User;
 passport.serializeUser( (user, done) => {
     console.log("SERIALIZE USER IS RUNNING:", user.id);  
     done(null, user.id);
-})
+}); 
 
 passport.deserializeUser(function(id, done) {
   console.log("DESERIALIZE USER IS RUNNING: ", id); 

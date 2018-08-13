@@ -28,7 +28,13 @@ export const fetchArticlesFromApi = async (dispatch, getState) => {
 }
 
 export const fetchUser = async (dispatch, getState) => {
-    const userResults = await axios.get('http://localhost:5000/api/current_user'); 
+    const userResults = await axios.get('http://localhost:5000/api/current_user', {
+        withCredentials: true,
+        headers: {
+            'Content-Type':'application/json',
+        },
+        credentials: "same-origin"
+    }); 
     dispatch(updateCurrentUser(userResults.data)); 
     console.log("USER RESULTS: ", userResults);
 }

@@ -20,6 +20,7 @@ module.exports = (app) => {
     )
 
     app.get('/api/current_user', (req, res) => {
+        console.log("CURRENT PASSPORT SESSION: ", req.session); 
         console.log("CURRENT USER: ", req.user);
         res.send(req.user);  
     })
