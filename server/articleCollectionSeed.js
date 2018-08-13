@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 mongoose.connect(keys.MONGO_DEV_URI); 
 
-const thisArticle = Article.findById('5b6b46a5f013e485332a709f');
+const thisArticle = Article.findById('5b6b46a5f013e485332a7108');
 
 const newCollection = new ArticleCollection({
     name: 'foo',
