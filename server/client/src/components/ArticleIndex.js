@@ -38,11 +38,37 @@ class ArticleIndex extends Component
         console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
         return articleList.slice(this.state.min, this.state.max).map( article => <ArticleCard article={article} key={article._id} onClick={this.handleUpdatingCurrentArticle}/>);
     }
+
+    goToNextPageOfArticles = () => {
+        if (this.state.max > this.props.articleList.length - 20) {
+            return null;
+        } else {
+            this.setState({
+                min: this.state.min + 20,
+                max: this.state.max + 20
+            })
+        }
+    }
+
+    goToPreviousPageOfArticles = () => {
+        if (this.state.min < 20) {
+            return null;
+        } else {
+            this.setState({
+                min: this.state.min - 20,
+                max: this.state.max - 20
+            })
+        }
+    }
     
     
     render() {
         return(
-            <div>{this.props.articleList.length > 0 ? this.renderArticleCards(this.props.articleList) : "Loading Articles"}</div>
+            <div>
+                <button onClick={this.goToPreviousPageOfArticles}>Previous Page</button>
+                <button onClick={this.goToNextPageOfArticles}>Next Page</button>
+                {this.props.articleList.length > 0 ? this.renderArticleCards(this.props.articleList) : "Loading Articles"}
+            </div>
         );
     }   
 }
