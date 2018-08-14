@@ -46,7 +46,12 @@ class ArticleDetail extends Component {
     }
 
     saveArticleToCollection = async () => {
-        // const results = await axios.post('http://localhost:5000/api/collections')
+        const selectedCollection = this.props.collections.find( collection => collection._id === this.state.collectionId); 
+        console.log("SELECTED COLLECTION: ", selectedCollection); 
+        const results = await axios.post('http://localhost:5000/api/collections', {
+            collection: selectedCollection,
+            user: this.props.currentUserId
+        });
           
     }
 
