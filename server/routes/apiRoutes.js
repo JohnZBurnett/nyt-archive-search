@@ -12,6 +12,17 @@ async function getAllArticlesFromDb() {
     return allArticles; 
 }
 
+async function populateAndSendArticleCollections(articleCollections, res) {
+    console.log("ARTICLE COLLECTIONS: ", articleCollections); 
+    // articleCollections.populate('articles')
+    //   .populate('users')
+    //   .exec( function(err, articleCollection) {
+    //       if (err) return handleError(err);
+    //       console.log("POPULATED ARTICLE COLLECTION: ", articleCollection); 
+    //   }) 
+
+}
+
 module.exports = (app) => {
     app.get('/articles', async (req, res) => {
         const allArticlesFromDb = await getAllArticlesFromDb(); 
@@ -80,6 +91,7 @@ module.exports = (app) => {
 
     app.get('/api/collections', async (req, res) => {
         const allArticleCollections = await ArticleCollection.find({}); 
+        populateAndSendArticleCollections(allArticleCollections, res); 
         res.send(allArticleCollections); 
     })
 

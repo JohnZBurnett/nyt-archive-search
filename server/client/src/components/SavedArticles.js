@@ -1,5 +1,4 @@
-import React from 'react';
-import { getArticleCollectionsFromApi } from '../actions/index'; 
+import React from 'react'; 
 import { connect } from 'react-redux'; 
 
 function mapStateToProps(state)  {
@@ -9,8 +8,10 @@ function mapStateToProps(state)  {
         }
     )
 }
+
+
 const SavedArticles = (props) => {
-    getArticleCollectionsFromApi(); 
+    
     return(
         <div>I am a SavedArticles placeholder.</div>
     )

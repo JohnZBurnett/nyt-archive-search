@@ -44,6 +44,7 @@ export const fetchUser = async (dispatch, getState) => {
 }
 
 export const getArticleCollectionsFromApi = async (dispatch, getState) => {
-    const articleCollectionResults = await axios.get('http://localhost:5000/api/collections'); 
+    const articleCollectionResults = await axios.get('http://localhost:5000/api/collections');
+    console.log("DISPATCH: ", dispatch); 
     console.log("ARTICLE COLLECTION RESULTS: ", articleCollectionResults); 
 }
