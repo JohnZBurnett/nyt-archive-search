@@ -14,6 +14,7 @@ const initialState = {
     currentArticle: {},
     userSavedArticles: {},
     articleList: [],
+    articleCollections: [],
     auth: null
 };
 
