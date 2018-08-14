@@ -7,7 +7,7 @@ const mapStateToProps = (state) => {
     return(
         {
             article: state.currentArticle,
-            auth: state.currentUser,
+            currentUserId: state.auth._id,
             collections: state.articleCollections
         }
     )
@@ -27,7 +27,7 @@ class ArticleDetail extends Component {
 
         this.state = {
             pdfUrl: "",
-            collectionName: ""
+            collectionId: ""
         }
     }
 
@@ -47,15 +47,27 @@ class ArticleDetail extends Component {
 
     saveArticleToCollection = async () => {
         // const results = await axios.post('http://localhost:5000/api/collections')
+          
+    }
+
+    handlecollectionIdChange = (event) => {
+        this.setState({
+            collectionId: event.target.value
+        })
     }
 
     renderAllUserCollectionsAsSelectOptions = () => {
-
+        const collectionsForThisUser = this.filterToCollectionsForThisUser()
+        return collectionsForThisUser.map( collection => {
+            return <option value={collection._id} key={collection._id}>{collection.name}</option>
+        }); 
     }
 
     filterToCollectionsForThisUser = () => {
-        const userId = this.props.auth._id; 
-        console.log("USER ID :  ", userId); 
+        console.log("USER:  ", this.props.currentUserId);
+        return (
+            this.props.collections.filter( collection => collection.user === this.props.currentUserId)
+        ) 
     }
 
     render() {
@@ -63,8 +75,10 @@ class ArticleDetail extends Component {
             <div>
                 <h1>{this.props.article.headline.main}</h1>
                 <p>SNIPPET: {this.props.article.snippet}</p>
+                <select value={this.state.collectionId} onChange={this.handleCollectionNameChange}>{this.renderAllUserCollectionsAsSelectOptions()}</select>
                 <button onClick={this.saveArticleToCollection}>Save</button>
                 <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
+                <br/>
                 <embed src={this.state.pdfUrl} height="600" width="200"></embed>
             </div>
         );

@@ -77,7 +77,6 @@ class SavedArticles extends Component {
             name: this.state.nameForm
         }
         const result = await axios.post('http://localhost:5000/api/collections', body);
-        console.log("NEW CAT RESULT: ", result);  
         this.props.articleCollections.push(result.data); 
 
         // some jank to re-render the page & display the new category
