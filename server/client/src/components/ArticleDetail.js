@@ -46,14 +46,19 @@ class ArticleDetail extends Component {
     }
 
     saveArticleToCollection = async () => {
-        const selectedCollection = this.props.collections.find( collection => collection._id === this.state.collectionId); 
-        selectedCollection.articles.push(this.props.article); 
-        console.log("SELECTED COLLECTION: ", selectedCollection); 
+        const updatedCollection = this.findSelectedCollectionAndAddArticle(); 
+        console.log("SELECTED COLLECTION: ", updatedCollection); 
         const results = await axios.put(`http://localhost:5000/api/collections/${this.state.collectionId}`, {
             collection: selectedCollection,
             user: this.props.currentUserId
         });
           
+    }
+
+    findSelectedCollectionAndAddArticle = () => {
+        const selectedCollection = this.props.collections.find( collection => collection._id === this.state.collectionId); 
+        selectedCollection.articles.push(this.props.article); 
+        return selectedCollection; 
     }
 
     handleCollectionIdChange = (event) => {
