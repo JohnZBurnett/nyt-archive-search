@@ -17,35 +17,14 @@ function mapStateToProps(state)   {
     )
 }
 
-function renderAllArticleCollectionsForThisUser(articleCollections, articles) {
-    return(
-        articleCollections.map( (articleCollection) => {
-            return (
-             <div key={articleCollection._id}>
-                 <h1>Category: {articleCollection.name} </h1>
-                {renderAllArticlesForThisCollection(articleCollection.articles, articles)}
-             </div>
-            )
-        })
-    )
-}
-
-const handleUpdatingCurrentArticle = (article) => {
-    updateCurrentArticle(article); 
-    history.push('/detail'); 
-}
-
-
-function renderAllArticlesForThisCollection(articleIdArr, articleArr) {
- 
-    return(
-        articleIdArr.map( articleId => {
-            const thisArticle = articleArr.find( article => article._id === articleId); 
-            return <ArticleCard article={thisArticle} key={thisArticle._id} onClick={handleUpdatingCurrentArticle}/>
-        })
-    )
-}
-
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateCurrentArticle: (article) => {
+            dispatch(updateCurrentArticle(article));
+        }
+        
+    }
+} ;
 
 class SavedArticles extends Component {
     constructor(props) {
@@ -55,7 +34,35 @@ class SavedArticles extends Component {
             nameForm: ""
         }
     }
-
+    
+    renderAllArticleCollectionsForThisUser = (articleCollections, articles) => {
+        return(
+            articleCollections.map( (articleCollection) => {
+                return (
+                 <div key={articleCollection._id}>
+                     <h1>Category: {articleCollection.name} </h1>
+                    {this.renderAllArticlesForThisCollection(articleCollection.articles, articles)}
+                 </div>
+                )
+            })
+        )
+    }
+    
+    handleUpdatingCurrentArticle = (article) => {
+        this.props.updateCurrentArticle(article); 
+        this.props.history.push('/detail'); 
+    }
+    
+    
+    renderAllArticlesForThisCollection = (articleIdArr, articleArr) => {
+     
+        return(
+            articleIdArr.map( articleId => {
+                const thisArticle = articleArr.find( article => article._id === articleId); 
+                return <ArticleCard article={thisArticle} key={thisArticle._id} onClick={this.handleUpdatingCurrentArticle}/>
+            })
+        )
+    }
     
 
     handleNameFormChange = (event) => {
@@ -85,7 +92,7 @@ class SavedArticles extends Component {
                 <input type="text" placeholder="Enter a new category name: " value={this.state.nameForm} onChange={this.handleNameFormChange}/>
                 <button onClick={this.saveNewCategory}>Save New Category</button>
                 <div>
-                    {this.props.articles.length > 0 ? renderAllArticleCollectionsForThisUser(this.props.articleCollections, this.props.articles) : null} 
+                    {this.props.articles.length > 0 ? this.renderAllArticleCollectionsForThisUser(this.props.articleCollections, this.props.articles) : null} 
                 </div>
             </div>
         )
@@ -94,4 +101,4 @@ class SavedArticles extends Component {
 }
     
 
-export default withRouter(connect(mapStateToProps)(SavedArticles)); 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SavedArticles)); 
