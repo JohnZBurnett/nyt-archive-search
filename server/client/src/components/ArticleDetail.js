@@ -48,7 +48,7 @@ class ArticleDetail extends Component {
     saveArticleToCollection = async () => {
         const selectedCollection = this.props.collections.find( collection => collection._id === this.state.collectionId); 
         console.log("SELECTED COLLECTION: ", selectedCollection); 
-        const results = await axios.post('http://localhost:5000/api/collections', {
+        const results = await axios.put(`http://localhost:5000/api/collections/${this.state.collectionId}`, {
             collection: selectedCollection,
             user: this.props.currentUserId
         });
