@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
 import axios from 'axios'; 
+import pdfjsLib from 'pdfjs-dist'; 
 
 
 const mapStateToProps = (state) => {
@@ -27,7 +28,8 @@ class ArticleDetail extends Component {
 
         this.state = {
             pdfUrl: "",
-            collectionId: ""
+            collectionId: "",
+            pdfUrlFound: false
         }
     }
 
@@ -40,9 +42,27 @@ class ArticleDetail extends Component {
             web_url: this.props.article.web_url
         }); 
         this.setState({
-            pdfUrl: results.data.pdfUrl 
+            pdfUrl: results.data.pdfUrl,
+            pdfUrlFound: true
         })
         console.log("NYT SCRAPE RESULTS: ", results); 
+    }
+
+    getAndRenderPdf = async () => {
+        const loadingTask = await pdfjsLib.getDocument(this.state.pdfUrl);
+        const page = await pdfjsLib.getPage(1); 
+        const scale = 1.5; 
+        const viewport = page.getViewport(scale); 
+        const canvas = document.getElementById('the-canvas'); 
+        const context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.weidth = viewport.width; 
+
+        const renderContext = {
+            canvasContext: context,
+            viewport: viewport
+        }; 
+        const renderTask = page.render(renderContext); 
     }
 
     saveArticleToCollection = async () => {
@@ -91,7 +111,9 @@ class ArticleDetail extends Component {
                 <button onClick={this.saveArticleToCollection}>Save</button>
                 <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
                 <br/>
-                <embed src={this.state.pdfUrl} height="600" width="200"></embed>
+                <canvas id="the-canvas"></canvas>
+                {this.state.pdfUrlFound ? this.getAndRenderPdf() : null }
+                {/*<embed src={this.state.pdfUrl} height="600" width="200"></embed>*/}
             </div>
         );
     }
