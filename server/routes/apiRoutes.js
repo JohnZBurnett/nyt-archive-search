@@ -97,13 +97,12 @@ module.exports = (app) => {
 
     app.post('/api/collections', async (req, res) => {
         console.log("REQUEST ARRIVED: ", req.body); 
-        const savedArticle = await Article.findById(req.body.articleId); 
         const newArticleCollection = new ArticleCollection({
             name: req.body.name,
             articles: [
             ],
-        })
-        newArticleCollection.articles.push(savedArticle._id)
+            user: req.body.user
+        }); 
         newArticleCollection.save();
         res.send(newArticleCollection); 
     })
