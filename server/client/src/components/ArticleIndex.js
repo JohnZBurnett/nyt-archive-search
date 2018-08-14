@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
 import ArticleCard from './ArticleCard'; 
 import { updateCurrentArticle } from '../actions/index'; 
@@ -18,23 +18,28 @@ const mapDispatchToProps = (dispatch) => {
         
     }
 } ; 
-
-const ArticleIndex = ({articleList, updateCurrentArticle, history}) => {
-
-    const handleUpdatingCurrentArticle = (article) => {
-        updateCurrentArticle(article); 
-        history.push('/detail'); 
+class ArticleIndex extends Component  
+  {
+    constructor(props) {
+        super(props); 
     }
 
-    const renderArticleCards = (articleList) => {
+    handleUpdatingCurrentArticle = (article) => {
+        this.props.updateCurrentArticle(article); 
+        this.props.history.push('/detail'); 
+    }
+
+    renderArticleCards = (articleList) => {
         console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
-        return articleList.map( article => <ArticleCard article={article} key={article._id} onClick={handleUpdatingCurrentArticle}/>);
+        return articleList.map( article => <ArticleCard article={article} key={article._id} onClick={this.handleUpdatingCurrentArticle}/>);
     }
     
     
-    return(
-        <div>{articleList.length > 0 ? renderArticleCards(articleList) : "Loading Articles"}</div>
-    );
+    render() {
+        return(
+            <div>{this.props.articleList.length > 0 ? this.renderArticleCards(this.props.articleList) : "Loading Articles"}</div>
+        );
+    }   
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ArticleIndex)); 
