@@ -55,8 +55,10 @@ class ArticleDetail extends Component {
     }
 
     findSelectedCollectionAndAddArticle = () => {
-        const selectedCollection = this.props.collections.find( collection => collection._id === this.state.collectionId); 
-        selectedCollection.articles.push(this.props.article); 
+        const selectedCollection = this.props.collections.find( collection => collection._id === this.state.collectionId);
+        
+        // this mutates the Redux state in its current form
+        selectedCollection.articles.push(this.props.article._id); 
         return selectedCollection; 
     }
 
