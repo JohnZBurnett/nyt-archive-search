@@ -35,12 +35,6 @@ class ArticleDetail extends Component {
         this.fetchPdfUrl(); 
     }
 
-    handleCollectionNameChange = (event) => {
-        this.setState({
-            collectionName: event.target.value
-        })
-    }
-
     fetchPdfUrl = async() => {
         const results = await axios.post('http://localhost:5000/api/current_article', {
             web_url: this.props.article.web_url
@@ -55,12 +49,20 @@ class ArticleDetail extends Component {
         // const results = await axios.post('http://localhost:5000/api/collections')
     }
 
+    renderAllUserCollectionsAsSelectOptions = () => {
+
+    }
+
+    filterToCollectionsForThisUser = () => {
+        const userId = this.props.auth._id; 
+        console.log("USER ID :  ", userId); 
+    }
+
     render() {
         return(
             <div>
                 <h1>{this.props.article.headline.main}</h1>
                 <p>SNIPPET: {this.props.article.snippet}</p>
-                <input type="text" placeholder="Input a collection name: " value={this.state.collectionName} onChange={this.handleCollectionNameChange}/>
                 <button onClick={this.saveArticleToCollection}>Save</button>
                 <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
                 <embed src={this.state.pdfUrl} height="600" width="200"></embed>

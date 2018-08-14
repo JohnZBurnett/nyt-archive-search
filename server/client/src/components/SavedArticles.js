@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
 import ArticleCard from './ArticleCard'; 
 import axios from 'axios'; 
+import { updateCurrentArticle } from '../actions/index'; 
+import { withRouter } from 'react-router-dom'; 
 
 function mapStateToProps(state)   {
     console.log("MAPPING STATE TO PROPS: ", state);
@@ -28,12 +30,18 @@ function renderAllArticleCollectionsForThisUser(articleCollections, articles) {
     )
 }
 
+const handleUpdatingCurrentArticle = (article) => {
+    updateCurrentArticle(article); 
+    history.push('/detail'); 
+}
+
+
 function renderAllArticlesForThisCollection(articleIdArr, articleArr) {
  
     return(
         articleIdArr.map( articleId => {
             const thisArticle = articleArr.find( article => article._id === articleId); 
-            return <ArticleCard article={thisArticle} key={thisArticle._id}/>
+            return <ArticleCard article={thisArticle} key={thisArticle._id} onClick={handleUpdatingCurrentArticle}/>
         })
     )
 }
@@ -47,6 +55,8 @@ class SavedArticles extends Component {
             nameForm: ""
         }
     }
+
+    
 
     handleNameFormChange = (event) => {
         this.setState({
@@ -62,6 +72,8 @@ class SavedArticles extends Component {
         const result = await axios.post('http://localhost:5000/api/collections', body);
         console.log("NEW CAT RESULT: ", result);  
         this.props.articleCollections.push(result.data); 
+
+        // some jank to re-render the page & display the new category
         this.setState({
             nameForm: ""
         })
@@ -82,4 +94,4 @@ class SavedArticles extends Component {
 }
     
 
-export default connect(mapStateToProps)(SavedArticles); 
+export default withRouter(connect(mapStateToProps)(SavedArticles)); 
