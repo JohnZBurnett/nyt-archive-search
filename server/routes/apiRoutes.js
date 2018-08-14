@@ -91,8 +91,8 @@ module.exports = (app) => {
 
     app.get('/api/pdf_data', async (req, res) => {
         const resp = await axios.get('https://timesmachine.nytimes.com/timesmachine/1943/01/01/83892511.pdf'); 
-        console.log("PDF RESPONSE BODY: ", resp.body); 
-        res.send(resp.body); 
+        console.log("PDF RESPONSE BODY: ", resp.data); 
+        res.send(resp.data); 
     })
 
     app.get('/api/collections', async (req, res) => {

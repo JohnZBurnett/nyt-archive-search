@@ -35,6 +35,7 @@ class ArticleDetail extends Component {
 
     componentDidMount() {
         this.fetchPdfUrl(); 
+        setTimeout(2000, this.forceUpdate()); 
     }
 
     fetchPdfUrl = async() => {
@@ -58,16 +59,16 @@ class ArticleDetail extends Component {
         const scale = 1.5; 
         const viewport = page.getViewport(scale); 
 
-        // const canvas = document.getElementById('the-canvas'); 
-        // const context = canvas.getContext('2d');
-        // canvas.height = viewport.height;
-        // canvas.weidth = viewport.width; 
+        const canvas = document.getElementById('the-canvas'); 
+        const context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.weidth = viewport.width; 
 
-        // const renderContext = {
-        //     canvasContext: context,
-        //     viewport: viewport
-        // }; 
-        // const renderTask = page.render(renderContext); 
+        const renderContext = {
+            canvasContext: context,
+            viewport: viewport
+        }; 
+        const renderTask = page.render(renderContext); 
         return null; 
     }
 
@@ -118,8 +119,8 @@ class ArticleDetail extends Component {
                 <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
                 <br/>
                 <canvas id="the-canvas"></canvas>
-                {this.state.pdfUrlFound ? this.getAndRenderPdf() : null}
-                {/*<embed src={this.state.pdfUrl} height="600" width="200"></embed>*/}
+                {/* this.state.pdfUrlFound ? this.getAndRenderPdf() : null */}
+                {<embed className="article-pdf" src={this.state.pdfUrl} height="50" width="50"></embed>}
             </div>
         );
     }
