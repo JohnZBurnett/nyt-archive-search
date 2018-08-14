@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import ArticleCard from './ArticleCard'; 
 import axios from 'axios'; 
 
-function mapStateToProps(state)  {
+function mapStateToProps(state)   {
+    console.log("MAPPING STATE TO PROPS: ", state);
+    console.log("USER IN STATE: ", state.auth);  
     return(
         {
             articleCollections: state.articleCollections,
@@ -54,7 +56,7 @@ class SavedArticles extends Component {
 
     saveNewCategory = async () => {
         const body = {
-            user: this.state.userId,
+            user: this.props.userId,
             name: this.state.nameForm
         }
         const result = await axios.post('http://localhost:5000/api/collections', body); 
