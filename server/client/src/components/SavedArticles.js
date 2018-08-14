@@ -59,7 +59,12 @@ class SavedArticles extends Component {
             user: this.props.userId,
             name: this.state.nameForm
         }
-        const result = await axios.post('http://localhost:5000/api/collections', body); 
+        const result = await axios.post('http://localhost:5000/api/collections', body);
+        console.log("NEW CAT RESULT: ", result);  
+        this.props.articleCollections.push(result.data); 
+        this.setState({
+            nameForm: ""
+        })
     }
 
     render() {
