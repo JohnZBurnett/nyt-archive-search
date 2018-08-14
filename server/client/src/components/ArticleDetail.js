@@ -49,7 +49,11 @@ class ArticleDetail extends Component {
     }
 
     getAndRenderPdf = async () => {
-        const loadingTask = await pdfjsLib.getDocument(this.state.pdfUrl);
+        try {
+            const loadingTask = await pdfjsLib.getDocument({ url: this.state.pdfUrl});
+        } catch(err) {
+            alert(err); 
+        }
         const page = await pdfjsLib.getPage(1); 
         const scale = 1.5; 
         const viewport = page.getViewport(scale); 
