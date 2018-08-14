@@ -12,12 +12,11 @@ function mapStateToProps(state)  {
 }
 
 function renderAllArticleCollectionsForThisUser(articleCollections, articles) {
-    console.log("ARTICLE PROPS: ", articles);
     return(
         articleCollections.map( (articleCollection) => {
             return (
-             <div>
-                 <h1>Name: {articleCollection.name} </h1>
+             <div key={articleCollection._id}>
+                 <h1>Category: {articleCollection.name} </h1>
                 {renderAllArticlesForThisCollection(articleCollection.articles, articles)}
              </div>
             )
@@ -29,20 +28,21 @@ function renderAllArticlesForThisCollection(articleIdArr, articleArr) {
  
     return(
         articleIdArr.map( articleId => {
-            console.log("ARTICLE ID: ", articleId); 
-            const thisArticle = articleArr.find( article => article._id === '5b6b465af013e4853329e362')
-            console.log("THIS ARTICLE: ", thisArticle); 
+            const thisArticle = articleArr.find( article => article._id === articleId); 
+            return <ArticleCard article={thisArticle} key={thisArticle._id}/>
         })
     )
-    console.log("ARTICLE ID ARR: ", articleIdArr); 
 }
 
 
 const SavedArticles = (props) => {
 
-    renderAllArticleCollectionsForThisUser(props.articleCollections, props.articles); 
+    
     return(
-        <div>I am a SavedArticles placeholder.</div>
+        
+        <div>
+            {props.articles.length > 0 ? renderAllArticleCollectionsForThisUser(props.articleCollections, props.articles) : null} 
+        </div>
     )
 }
 
