@@ -49,29 +49,6 @@ class ArticleDetail extends Component {
         console.log("NYT SCRAPE RESULTS: ", results); 
     }
 
-    getAndRenderPdf = async () => {
-        try {
-            const loadingTask = await pdfjsLib.getDocument({ url: this.state.pdfUrl});
-        } catch(err) {
-            alert(err); 
-        }
-        const page = await pdfjsLib.getPage(1); 
-        const scale = 1.5; 
-        const viewport = page.getViewport(scale); 
-
-        const canvas = document.getElementById('the-canvas'); 
-        const context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.weidth = viewport.width; 
-
-        const renderContext = {
-            canvasContext: context,
-            viewport: viewport
-        }; 
-        const renderTask = page.render(renderContext); 
-        return null; 
-    }
-
     saveArticleToCollection = async () => {
         const updatedCollection = this.findSelectedCollectionAndAddArticle(); 
         console.log("SELECTED COLLECTION: ", updatedCollection); 
@@ -118,9 +95,10 @@ class ArticleDetail extends Component {
                 <button onClick={this.saveArticleToCollection}>Save</button>
                 <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
                 <br/>
-                <canvas id="the-canvas"></canvas>
                 {/* this.state.pdfUrlFound ? this.getAndRenderPdf() : null */}
-                {<embed className="article-pdf" src={this.state.pdfUrl} height="50" width="50"></embed>}
+                <div>
+                    <object data={this.state.pdfUrl} width="500" height="500"></object>
+                </div>
             </div>
         );
     }
