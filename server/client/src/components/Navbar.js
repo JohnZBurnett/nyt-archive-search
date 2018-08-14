@@ -15,6 +15,7 @@ const Navbar = (props) => {
             <Link to="/">Home</Link>
             <Link to="/index">Index</Link>
             <Link to="/detail">Detail</Link>
+            { props.auth ? <Link to="/saved">Saved Articles</Link> : null}
             { props.auth ? null : <Link to="/login">Log In</Link> }
             { props.auth ? null : <Link to="/register">Sign Up</Link>}
             { props.auth ? <a href="/api/logout">Log Out</a> : null } 
