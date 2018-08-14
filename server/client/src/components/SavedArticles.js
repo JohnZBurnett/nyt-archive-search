@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, { Component } from 'react'; 
 import { connect } from 'react-redux'; 
 import ArticleCard from './ArticleCard'; 
 
@@ -35,15 +35,33 @@ function renderAllArticlesForThisCollection(articleIdArr, articleArr) {
 }
 
 
-const SavedArticles = (props) => {
+class SavedArticles extends Component {
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            nameForm: ""
+        }
+    }
+
+    handleNameFormChange = (event) => {
+        this.setState({
+            nameForm: event.target.value
+        })
+    }
+
+    render() {
+        return(
+            <div>
+                <input type="text" placeholder="Enter a new category name: " value={this.state.nameForm} onChange={this.handleNameFormChange}/>
+                <div>
+                    {props.articles.length > 0 ? renderAllArticleCollectionsForThisUser(props.articleCollections, props.articles) : null} 
+                </div>
+            </div>
+        )
+    }
     
-    return(
-        
-        <div>
-            {props.articles.length > 0 ? renderAllArticleCollectionsForThisUser(props.articleCollections, props.articles) : null} 
-        </div>
-    )
 }
+    
 
 export default connect(mapStateToProps)(SavedArticles); 

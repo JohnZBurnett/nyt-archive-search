@@ -51,8 +51,8 @@ class ArticleDetail extends Component {
         console.log("NYT SCRAPE RESULTS: ", results); 
     }
 
-    saveArticleToCollection = () => {
-        const results = await axios.post('http://localhost:5000/api/collections')
+    saveArticleToCollection = async () => {
+        // const results = await axios.post('http://localhost:5000/api/collections')
     }
 
     render() {
