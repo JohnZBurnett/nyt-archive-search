@@ -89,6 +89,12 @@ module.exports = (app) => {
         res.send(body); 
     })
 
+    app.get('/api/pdf_data', async (req, res) => {
+        const resp = await axios.get('https://timesmachine.nytimes.com/timesmachine/1943/01/01/83892511.pdf'); 
+        console.log("PDF RESPONSE BODY: ", resp.body); 
+        res.send(resp.body); 
+    })
+
     app.get('/api/collections', async (req, res) => {
         const allArticleCollections = await ArticleCollection.find({}); 
         populateAndSendArticleCollections(allArticleCollections, res); 
