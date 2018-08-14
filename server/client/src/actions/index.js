@@ -1,4 +1,4 @@
-import { UPDATE_CURRENT_ARTICLE, ADD_ARTICLES_FROM_FETCH, FILTER_ARTICLES, UPDATE_CURRENT_USER, SAVE_ARTICLE} from './actionTypes';
+import { UPDATE_CURRENT_ARTICLE, UPDATE_ARTICLE_COLLECTIONS, ADD_ARTICLES_FROM_FETCH, FILTER_ARTICLES, UPDATE_CURRENT_USER, SAVE_ARTICLE, GET_ARTICLE_COLLECTIONS} from './actionTypes';
 import axios from 'axios'; 
 
 export const updateCurrentArticle = article => ({
@@ -21,6 +21,10 @@ export const updateCurrentUser = user => ({
     type: UPDATE_CURRENT_USER, payload: user
 })
 
+export const updateArticleCollections = articleCollections => ({
+    type: UPDATE_ARTICLE_COLLECTIONS, payload: articleCollections
+})
+
 export const fetchArticlesFromApi = async (dispatch, getState) => {
     const articleResults = await axios.get('http://localhost:5000/articles'); 
     dispatch(addArticlesFromFetch(articleResults.data));
@@ -37,4 +41,9 @@ export const fetchUser = async (dispatch, getState) => {
     }); 
     dispatch(updateCurrentUser(userResults.data)); 
     console.log("USER RESULTS: ", userResults);
+}
+
+export const getArticleCollectionsFromApi = async (dispatch, getState) => {
+    const articleCollectionResults = await axios.get('http://localhost:5000/api/collections'); 
+    console.log("ARTICLE COLLECTION RESULTS: ", articleCollectionResults); 
 }

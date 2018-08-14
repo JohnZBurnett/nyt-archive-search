@@ -5,3 +5,4 @@ export const SAVE_ARTICLE = "save_article";
 export const FILTER_ARTICLES = "filter_articles";
 export const ADD_ARTICLES_FROM_FETCH = "add_articles_from_fetch";
 export const UPDATE_CURRENT_USER = "update_current_user";
+export const UPDATE_ARTICLE_COLLECTIONS = "get_article_collections";
