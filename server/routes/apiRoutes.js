@@ -110,7 +110,6 @@ module.exports = (app) => {
     app.put('/api/collections/:id', async (req, res) => {
         const articleCollectionId = req.params.id;
         const thisArticleCollection = await ArticleCollection.findById(articleCollectionId); 
-        thisArticleCollection.name = req.body.name; 
         thisArticleCollection.articles = req.body.articles;
         thisArticleCollection.save(); 
         res.send(thisArticleCollection); 
