@@ -30,7 +30,7 @@ function renderAllArticlesForThisCollection(articleIdArr, articleArr) {
     return(
         articleIdArr.map( articleId => {
             console.log("ARTICLE ID: ", articleId); 
-            const thisArticle = articleArr.find( article => article._id === '5b6b46a5f013e485332a7108')
+            const thisArticle = articleArr.find( article => article._id === '5b6b465af013e4853329e362')
             console.log("THIS ARTICLE: ", thisArticle); 
         })
     )
