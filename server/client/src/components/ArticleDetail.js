@@ -49,10 +49,9 @@ class ArticleDetail extends Component {
         const updatedCollection = this.findSelectedCollectionAndAddArticle(); 
         console.log("SELECTED COLLECTION: ", updatedCollection); 
         const results = await axios.put(`http://localhost:5000/api/collections/${this.state.collectionId}`, {
-            collection: selectedCollection,
+            articles: updatedCollection.articles,
             user: this.props.currentUserId
         });
-          
     }
 
     findSelectedCollectionAndAddArticle = () => {
