@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
     return {
-        articleList: [...state.articleList.slice(0, 20)],
+        articleList: [...state.articleList],
     }
 }
 
@@ -22,6 +22,11 @@ class ArticleIndex extends Component
   {
     constructor(props) {
         super(props); 
+
+        this.state = {
+            min: 0,
+            max: 20
+        }
     }
 
     handleUpdatingCurrentArticle = (article) => {
@@ -31,7 +36,7 @@ class ArticleIndex extends Component
 
     renderArticleCards = (articleList) => {
         console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
-        return articleList.map( article => <ArticleCard article={article} key={article._id} onClick={this.handleUpdatingCurrentArticle}/>);
+        return articleList.slice(this.state.min, this.state.max).map( article => <ArticleCard article={article} key={article._id} onClick={this.handleUpdatingCurrentArticle}/>);
     }
     
     
