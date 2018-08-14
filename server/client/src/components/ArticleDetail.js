@@ -50,7 +50,7 @@ class ArticleDetail extends Component {
           
     }
 
-    handlecollectionIdChange = (event) => {
+    handleCollectionIdChange = (event) => {
         this.setState({
             collectionId: event.target.value
         })
@@ -75,7 +75,7 @@ class ArticleDetail extends Component {
             <div>
                 <h1>{this.props.article.headline.main}</h1>
                 <p>SNIPPET: {this.props.article.snippet}</p>
-                <select value={this.state.collectionId} onChange={this.handleCollectionNameChange}>{this.renderAllUserCollectionsAsSelectOptions()}</select>
+                <select value={this.state.collectionId} onChange={this.handleCollectionIdChange}>{this.renderAllUserCollectionsAsSelectOptions()}</select>
                 <button onClick={this.saveArticleToCollection}>Save</button>
                 <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
                 <br/>
