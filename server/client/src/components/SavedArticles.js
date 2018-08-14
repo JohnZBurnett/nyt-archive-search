@@ -1,12 +1,14 @@
 import React, { Component } from 'react'; 
 import { connect } from 'react-redux'; 
 import ArticleCard from './ArticleCard'; 
+import axios from 'axios'; 
 
 function mapStateToProps(state)  {
     return(
         {
             articleCollections: state.articleCollections,
-            articles: state.articleList
+            articles: state.articleList,
+            userId: state.auth._id
         }
     )
 }
@@ -50,12 +52,21 @@ class SavedArticles extends Component {
         })
     }
 
+    saveNewCategory = async () => {
+        const body = {
+            user: this.state.userId,
+            name: this.state.nameForm
+        }
+        const result = await axios.post('http://localhost:5000/api/collections', body); 
+    }
+
     render() {
         return(
             <div>
                 <input type="text" placeholder="Enter a new category name: " value={this.state.nameForm} onChange={this.handleNameFormChange}/>
+                <button onClick={this.saveNewCategory}>Save New Category</button>
                 <div>
-                    {props.articles.length > 0 ? renderAllArticleCollectionsForThisUser(props.articleCollections, props.articles) : null} 
+                    {this.props.articles.length > 0 ? renderAllArticleCollectionsForThisUser(this.props.articleCollections, this.props.articles) : null} 
                 </div>
             </div>
         )
