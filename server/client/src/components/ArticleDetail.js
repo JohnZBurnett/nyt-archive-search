@@ -53,16 +53,18 @@ class ArticleDetail extends Component {
         const page = await pdfjsLib.getPage(1); 
         const scale = 1.5; 
         const viewport = page.getViewport(scale); 
-        const canvas = document.getElementById('the-canvas'); 
-        const context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.weidth = viewport.width; 
 
-        const renderContext = {
-            canvasContext: context,
-            viewport: viewport
-        }; 
-        const renderTask = page.render(renderContext); 
+        // const canvas = document.getElementById('the-canvas'); 
+        // const context = canvas.getContext('2d');
+        // canvas.height = viewport.height;
+        // canvas.weidth = viewport.width; 
+
+        // const renderContext = {
+        //     canvasContext: context,
+        //     viewport: viewport
+        // }; 
+        // const renderTask = page.render(renderContext); 
+        return null; 
     }
 
     saveArticleToCollection = async () => {
@@ -112,7 +114,7 @@ class ArticleDetail extends Component {
                 <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
                 <br/>
                 <canvas id="the-canvas"></canvas>
-                {this.state.pdfUrlFound ? this.getAndRenderPdf() : null }
+                {this.state.pdfUrlFound ? this.getAndRenderPdf() : null}
                 {/*<embed src={this.state.pdfUrl} height="600" width="200"></embed>*/}
             </div>
         );
