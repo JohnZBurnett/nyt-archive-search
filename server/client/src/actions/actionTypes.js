@@ -7,3 +7,6 @@ export const ADD_ARTICLES_FROM_FETCH = "add_articles_from_fetch";
 export const UPDATE_CURRENT_USER = "update_current_user";
 export const UPDATE_ARTICLE_COLLECTIONS = "get_article_collections";
 export const RECORD_USER_LOGOUT = "record_user_logout"; 
+export const UPDATE_ARTICLE_TITLE_FILTER = "update_article_title_filter"; 
+export const UPDATE_ARTICLE_START_MONTH_FILTER = "update_article_start_month_filter";
+export const UPDATE_ARTICLE_END_MONTH_FILTER = "update_article_end_month_filter"; 

@@ -15,7 +15,10 @@ const initialState = {
     userSavedArticles: {},
     articleList: [],
     articleCollections: [],
-    auth: null
+    auth: null,
+    titleFilter: "",
+    articleStartMonthFilter: "",
+    articleEndMonthFilter: ""
 };
 
 const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(thunk, logger))); 
