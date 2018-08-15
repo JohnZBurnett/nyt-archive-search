@@ -48,11 +48,12 @@ class ArticleIndex extends Component
     handleFilteringArticleListBySearchOptions = () => {
         const listFilteredByTitle = this.filterArticleListFromSearchTerms(this.props.articleList); 
         const listFilteredByDatesAndTitle = this.filterArticleListFromStartAndEndMonth(listFilteredByTitle); 
+        return listFilteredByDatesAndTitle; 
     }
 
     renderArticleCards = (articleList) => {
         // console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
-        return this.filterArticleListFromSearchTerms().slice(this.state.min, this.state.max).map( article => <ArticleCard article={article} key={article._id} onClick={this.handleUpdatingCurrentArticle}/>);
+        return this.handleFilteringArticleListBySearchOptions().slice(this.state.min, this.state.max).map( article => <ArticleCard article={article} key={article._id} onClick={this.handleUpdatingCurrentArticle}/>);
     }
 
     goToNextPageOfArticles = () => {
