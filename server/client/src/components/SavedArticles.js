@@ -26,6 +26,8 @@ const mapDispatchToProps = (dispatch) => {
     }
 } ;
 
+
+
 class SavedArticles extends Component {
     constructor(props) {
         super(props);
@@ -33,6 +35,10 @@ class SavedArticles extends Component {
         this.state = {
             nameForm: ""
         }
+    }
+
+    filterArticleCollectionsForCurrentUserId() {
+        return this.props.articleCollections.filter( articleCollection => articleCollection.user === this.props.userId)
     }
     
     renderAllArticleCollectionsForThisUser = (articleCollections, articles) => {

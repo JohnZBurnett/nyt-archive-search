@@ -89,14 +89,14 @@ class ArticleDetail extends Component {
     render() {
         return(
             <div>
-                <h1>{this.props.article.headline.main}</h1>
-                <p>SNIPPET: {this.props.article.snippet}</p>
+                <h1 className="headline-font">{this.props.article.headline.main}</h1>
+                <p className="typewriter-font">SNIPPET: {this.props.article.snippet}</p>
                 <select value={this.state.collectionId} onChange={this.handleCollectionIdChange}>{this.renderAllUserCollectionsAsSelectOptions()}</select>
                 <button onClick={this.saveArticleToCollection}>Save</button>
                 <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
                 <br/>
                 {/* this.state.pdfUrlFound ? this.getAndRenderPdf() : null */}
-                <div>
+                <div className="article-pdf">
                     <object data={this.state.pdfUrl} width="500" height="500"></object>
                 </div>
             </div>

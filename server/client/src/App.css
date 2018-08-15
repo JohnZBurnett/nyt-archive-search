@@ -21,8 +21,26 @@
   color: white;
 }
 
+.navbar-link {
+  margin: 5px; 
+}
+
 .article-pdf {
-  visibility:visible;
+  margin: 0 auto; 
+  width: 50%;
+}
+
+.site-header {
+  text-align: center;
+}
+
+.headline-font {
+  font-family: 'Rye', cursive;
+  font-size: 20px;
+}
+
+.typewriter-font {
+  font-family: 'Special Elite', cursive;
 }
 
 .App-title {
