@@ -6,7 +6,7 @@ const ArticleCollection = require('../models/ArticleCollection').ArticleCollecti
 
 async function getAllArticlesFromDb() {
     const allArticles = await Article.find({
-        "pub_date.month":"05"
+        "pub_date.month":"01"
     }).lean(); 
     console.log("NUMBER OF ARTICLES FETCHED: ", allArticles.length); 
     return allArticles; 
@@ -119,6 +119,15 @@ module.exports = (app) => {
         thisArticleCollection.articles = req.body.articles;
         thisArticleCollection.save(); 
         res.send(thisArticleCollection); 
+    })
+
+    app.delete('/api/collections/:id', async (req, res) => {
+        const deletedCollection = await ArticleCollection.deleteOne({ 
+            _id: req.params.id
+        }, function (err) {
+            if (err) return handleError(err)
+        }); 
+        res.send(deletedCollection); 
     })
 }; 
 
