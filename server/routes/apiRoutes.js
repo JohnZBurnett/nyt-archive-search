@@ -6,8 +6,8 @@ const ArticleCollection = require('../models/ArticleCollection').ArticleCollecti
 
 async function getAllArticlesFromDb() {
     const allArticles = await Article.find({
-        "pub_date.month": "01"
-    }); 
+        "pub_date.year":"1943"
+    }).lean(); 
     console.log("NUMBER OF ARTICLES FETCHED: ", allArticles.length); 
     return allArticles; 
 }
