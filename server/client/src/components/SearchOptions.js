@@ -29,9 +29,14 @@ const searchOptions = (props) => {
         console.log("TITLE FILTER: ", props.titleFilter); 
     }
 
-    async function handleUpdatingStartMonthFilter(event) {
-        const result = await props.updateArticleStartMonthFilter(event.target.value.toString()); 
+    function handleUpdatingStartMonthFilter(event) {
+        props.updateArticleStartMonthFilter(event.target.value.toString()); 
     }
+
+    function handleUpdatingEndMonthFilter(event) {
+        props.updateArticleEndMonthFilter(event.target.value.toString()); 
+    }
+
 
     function generateMonthSelectOptions() {
         const countArr = [...Array(12).keys()];
@@ -49,7 +54,7 @@ const searchOptions = (props) => {
                 {generateMonthSelectOptions()}
             </select>
             <label>End Month: </label>
-            <select>
+            <select value={props.articleEndMonthFilter} onChange={handleUpdatingEndMonthFilter}>
                 {generateMonthSelectOptions()}
             </select>
             <label>Search titles by keywords:</label>
