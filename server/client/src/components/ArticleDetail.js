@@ -91,7 +91,10 @@ class ArticleDetail extends Component {
             <div>
                 <h1 className="headline-font">{this.props.article.headline.main}</h1>
                 <p className="typewriter-font">SNIPPET: {this.props.article.snippet}</p>
-                <select value={this.state.collectionId} onChange={this.handleCollectionIdChange}>{this.renderAllUserCollectionsAsSelectOptions()}</select>
+                <select value={this.state.collectionId} onChange={this.handleCollectionIdChange}>
+                    <option value="Placeholder"/>
+                    {this.renderAllUserCollectionsAsSelectOptions()}
+                </select>
                 <button onClick={this.saveArticleToCollection}>Save</button>
                 <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
                 <br/>
