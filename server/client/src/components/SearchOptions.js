@@ -30,10 +30,21 @@ const searchOptions = (props) => {
     }
 
     function handleUpdatingStartMonthFilter(event) {
+        // we need to update the end month if the current one precedes the new start month 
+        if (parseInt(props.articleEndMonthFilter) < event.target.value) {
+            props.updateArticleEndMonthFilter(event.target.value.toString()); 
+        }
+
         props.updateArticleStartMonthFilter(event.target.value.toString()); 
     }
 
     function handleUpdatingEndMonthFilter(event) {
+
+        // we also need to update the start month if it's now after the new end month
+        if (parseInt(props.articleStartMonthFilter) > event.target.value ) {
+            props.updateArticleStartMonthFilter(event.target.value.toString()); 
+        }
+
         props.updateArticleEndMonthFilter(event.target.value.toString()); 
     }
 
