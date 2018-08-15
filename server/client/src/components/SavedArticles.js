@@ -43,7 +43,7 @@ class SavedArticles extends Component {
     
     renderAllArticleCollectionsForThisUser = (articleCollections, articles) => {
         return(
-            articleCollections.map( (articleCollection) => {
+            this.filterArticleCollectionsForCurrentUserId().map( (articleCollection) => {
                 return (
                  <div key={articleCollection._id}>
                      <h1>Category: {articleCollection.name} </h1>
