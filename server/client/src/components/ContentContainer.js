@@ -1,8 +1,13 @@
 import React from 'react';
+import ArticleIndex from './ArticleIndex';
+import SearchOptions from './SearchOptions'; 
 
 const ContentContainer = (props) => {
     return(
-        <div>I am a ContentContainer placeholder.</div>
+        <div>
+            <SearchOptions />
+            <ArticleIndex />
+        </div>
     );
 }
 
