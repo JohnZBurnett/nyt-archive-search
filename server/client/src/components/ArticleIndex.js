@@ -42,12 +42,20 @@ class ArticleIndex extends Component
     }
 
     filterArticleListFromStartAndEndMonth = (articleList) => {
-        return articleList.filter( article => parseInt(article.pub_date.month) >= parseInt(this.props.articleStartMonthFilter) && parseInt(article.pub_date.month) <= parseInt(this.props.articleEndDateFilter) )
+        console.log("FIRST ARTICLE IN LIST: ", articleList[0])
+        console.log("START MONTH FILTER: ", parseInt(this.props.articleStartMonthFilter)); 
+        console.log("END MONTH FILTER: ", parseInt(this.props.articleEndMonthFilter)); 
+        return articleList.filter( article => {
+            return (parseInt(article.pub_date.month) >= parseInt(this.props.articleStartMonthFilter) && parseInt(article.pub_date.month) <= parseInt(this.props.articleEndMonthFilter) )
+          }
+        )
     }
 
     handleFilteringArticleListBySearchOptions = () => {
         const listFilteredByTitle = this.filterArticleListFromSearchTerms(this.props.articleList); 
+        console.log("LIST FILTERED BY TITLE: ", listFilteredByTitle); 
         const listFilteredByDatesAndTitle = this.filterArticleListFromStartAndEndMonth(listFilteredByTitle); 
+        console.log("FULLY FILTERED ARTICLE LIST: ", listFilteredByDatesAndTitle); 
         return listFilteredByDatesAndTitle; 
     }
 
