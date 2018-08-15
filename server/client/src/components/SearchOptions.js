@@ -15,9 +15,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return(
         {
-            updateArticleStartMonthFilter: (newStartMonth) => updateArticleStartMonthFilter(newStartMonth),
-            updateArticleEndMonthFilter: (newEndMonth) => updateArticleEndMonthFilter(newEndMonth),
-            updateArticleTitleFilter: (newFilterWords) => updateArticleTitleFilter(newFilterWords)
+            updateArticleStartMonthFilter: (newStartMonth) => dispatch(updateArticleStartMonthFilter(newStartMonth)),
+            updateArticleEndMonthFilter: (newEndMonth) => dispatch(updateArticleEndMonthFilter(newEndMonth)),
+            updateArticleTitleFilter: (newFilterWords) => dispatch(updateArticleTitleFilter(newFilterWords))
         }
     )
 }

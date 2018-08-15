@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = (state) => {
     return {
         articleList: [...state.articleList],
+        titleFilter: state.titleFilter
     }
 }
 
@@ -34,13 +35,17 @@ class ArticleIndex extends Component
         this.props.history.push('/detail'); 
     }
 
+    filterArticleListFromSearchTerms = () => {
+        return this.props.articleList.filter( article => article.headline.main.toLowerCase().includes(this.props.titleFilter.toLowerCase()))
+    }
+
     renderArticleCards = (articleList) => {
         console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
-        return articleList.slice(this.state.min, this.state.max).map( article => <ArticleCard article={article} key={article._id} onClick={this.handleUpdatingCurrentArticle}/>);
+        return this.filterArticleListFromSearchTerms().slice(this.state.min, this.state.max).map( article => <ArticleCard article={article} key={article._id} onClick={this.handleUpdatingCurrentArticle}/>);
     }
 
     goToNextPageOfArticles = () => {
-        if (this.state.max > this.props.articleList.length - 20) {
+        if (this.state.max > this.filterArticleListFromSearchTerms().length - 20) {
             return null;
         } else {
             this.setState({
