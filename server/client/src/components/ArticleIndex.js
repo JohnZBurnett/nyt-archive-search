@@ -38,7 +38,6 @@ class ArticleIndex extends Component
     }
 
     filterArticleListFromSearchTerms = (articleList) => {
-        debugger; 
         return articleList.filter( article => article.headline.main.toLowerCase().includes(this.props.titleFilter.toLowerCase()))
     }
 
