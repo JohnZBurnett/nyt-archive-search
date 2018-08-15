@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'; 
-import { ADD_ARTICLES_FROM_FETCH } from '../actions/actionTypes';
+import { recordUserLogout } from '../actions/index'; 
 import { withRouter } from 'react-router-dom'; 
+import axios from 'axios'; 
 
 const mapStateToProps = function(state) {
     return {
@@ -10,12 +11,25 @@ const mapStateToProps = function(state) {
     }
 }
 
-// const redirectToIndex = (props.history) => {
-//     history.push("/"); 
-// }
+const mapDispatchToProps = function(dispatch) {
+    return {
+        recordUserLogout: recordUserLogout
+    }
+}
+
+
 
 
 const Navbar = (props) => {
+
+    const redirectToIndex = () => {
+        console.log("PROPS : ", props); 
+        axios.get('/api/logout'); 
+        props.recordUserLogout(); 
+
+        props.history.push("/"); 
+    }; 
+
     return(
         <Fragment>
             <h1 className="site-header typewriter-font">1943: A Year in the Times</h1>
@@ -26,10 +40,10 @@ const Navbar = (props) => {
                 { props.auth ? <Link className="navbar-link typewriter-font" to="/saved">Saved Articles</Link> : null}
                 { props.auth ? null : <Link className="navbar-link typewriter-font" to="/login">Log In</Link> }
                 { props.auth ? null : <Link className="navbar-link typewriter-font" to="/register">Sign Up</Link>}
-                { props.auth ? <a className="navbar-link typewriter-font" href="/api/logout">Log Out</a> : null } 
+                { props.auth ? <a className="navbar-link typewriter-font" href="#" onClick={redirectToIndex}>Log Out</a> : null } 
             </div>
         </Fragment>
     )
 }
 
-export default connect(mapStateToProps)(Navbar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));

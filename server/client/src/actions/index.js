@@ -1,4 +1,4 @@
-import { UPDATE_CURRENT_ARTICLE, UPDATE_ARTICLE_COLLECTIONS, ADD_ARTICLES_FROM_FETCH, FILTER_ARTICLES, UPDATE_CURRENT_USER, SAVE_ARTICLE, GET_ARTICLE_COLLECTIONS} from './actionTypes';
+import { UPDATE_CURRENT_ARTICLE, RECORD_USER_LOGOUT, UPDATE_ARTICLE_COLLECTIONS, ADD_ARTICLES_FROM_FETCH, FILTER_ARTICLES, UPDATE_CURRENT_USER, SAVE_ARTICLE, GET_ARTICLE_COLLECTIONS} from './actionTypes';
 import axios from 'axios'; 
 
 export const updateCurrentArticle = article => ({
@@ -19,6 +19,10 @@ export const addArticlesFromFetch = articles => ({
 
 export const updateCurrentUser = user => ({
     type: UPDATE_CURRENT_USER, payload: user
+})
+
+export const recordUserLogout = () => ({
+    type: RECORD_USER_LOGOUT, payload: false
 })
 
 export const updateArticleCollections = articleCollections => ({
