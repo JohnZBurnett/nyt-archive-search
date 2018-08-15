@@ -38,6 +38,7 @@ class ArticleIndex extends Component
     }
 
     filterArticleListFromSearchTerms = (articleList) => {
+        debugger; 
         return articleList.filter( article => article.headline.main.toLowerCase().includes(this.props.titleFilter.toLowerCase()))
     }
 
@@ -51,8 +52,8 @@ class ArticleIndex extends Component
         )
     }
 
-    handleFilteringArticleListBySearchOptions = () => {
-        const listFilteredByTitle = this.filterArticleListFromSearchTerms(this.props.articleList); 
+    handleFilteringArticleListBySearchOptions = (articleList) => {
+        const listFilteredByTitle = this.filterArticleListFromSearchTerms(articleList); 
         console.log("LIST FILTERED BY TITLE: ", listFilteredByTitle); 
         const listFilteredByDatesAndTitle = this.filterArticleListFromStartAndEndMonth(listFilteredByTitle); 
         console.log("FULLY FILTERED ARTICLE LIST: ", listFilteredByDatesAndTitle); 
@@ -61,11 +62,11 @@ class ArticleIndex extends Component
 
     renderArticleCards = (articleList) => {
         // console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
-        return this.handleFilteringArticleListBySearchOptions().slice(this.state.min, this.state.max).map( article => <ArticleCard article={article} key={article._id} onClick={this.handleUpdatingCurrentArticle}/>);
+        return this.handleFilteringArticleListBySearchOptions(this.props.articleList).slice(this.state.min, this.state.max).map( article => <ArticleCard article={article} key={article._id} onClick={this.handleUpdatingCurrentArticle}/>);
     }
 
     goToNextPageOfArticles = () => {
-        if (this.state.max > this.filterArticleListFromSearchTerms().length - 20) {
+        if (this.state.max > this.handleFilteringArticleListBySearchOptions(this.props.articleList).length - 20) {
             return null;
         } else {
             this.setState({
