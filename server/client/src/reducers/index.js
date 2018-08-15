@@ -1,4 +1,4 @@
-import { RECORD_USER_LOGOUT, UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, UPDATE_ARTICLE_COLLECTIONS, FILTER_ARTICLES, ADD_ARTICLES_FROM_FETCH, UPDATE_CURRENT_USER} from '../actions/actionTypes';
+import { RECORD_USER_LOGOUT, UPDATE_ARTICLE_TITLE_FILTER,  UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, UPDATE_ARTICLE_COLLECTIONS, FILTER_ARTICLES, ADD_ARTICLES_FROM_FETCH, UPDATE_CURRENT_USER} from '../actions/actionTypes';
 
 
 
@@ -41,6 +41,12 @@ const rootReducer = (state = {}, action) => {
           return {
               ...state, auth: action.payload
           }
+
+        case UPDATE_ARTICLE_TITLE_FILTER:
+          return {
+              ...state, titleFilter: action.payload
+          }
+          
         default:
           return state
     }
