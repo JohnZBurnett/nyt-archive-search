@@ -13,7 +13,7 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
     return {
-        recordUserLogout: recordUserLogout
+        recordUserLogout: () => dispatch(recordUserLogout())
     }
 }
 

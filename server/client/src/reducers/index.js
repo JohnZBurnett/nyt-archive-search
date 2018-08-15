@@ -3,6 +3,7 @@ import { RECORD_USER_LOGOUT, UPDATE_CURRENT_ARTICLE, SAVE_ARTICLE, UPDATE_ARTICL
 
 
 const rootReducer = (state = {}, action) => {
+    console.log("WE HIT THE REDUCER, ACTION IS: ", action)
     switch(action.type) {
         case UPDATE_CURRENT_ARTICLE:
           return {
@@ -36,6 +37,7 @@ const rootReducer = (state = {}, action) => {
           }
 
         case RECORD_USER_LOGOUT: 
+          console.log("WE HIT RECORD_USER_LOGOUT IN THE REDUCER", action.payload); 
           return {
               ...state, auth: action.payload
           }
