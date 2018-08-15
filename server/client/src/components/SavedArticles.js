@@ -21,6 +21,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         updateCurrentArticle: (article) => {
             dispatch(updateCurrentArticle(article));
+        }, 
+        updateArticleCollections: (articleCollections) => {
+            dispatch(updateArticleCollections(articleCollections))
         }
         
     }
@@ -39,10 +42,11 @@ class SavedArticles extends Component {
 
     handleDeletingCategory(collectionId) {
         console.log(collectionId); 
-        // axios.delete(`/api/collections/${collectionId}`); 
+        axios.delete(`/api/collections/${collectionId}`); 
         const articleCollectionToDelete = this.props.articleCollections.find( articleCollection => articleCollection._id === collectionId);
         const indexToRemove = this.props.articleCollections.indexOf(articleCollectionToDelete); 
         const articleCollectionsMinusDeletedCollection = this.props.articleCollections.slice(0, indexToRemove).concat(this.props.articleCollections.slice(indexToRemove + 1));
+        this.props.updateArticleCollections(articleCollectionsMinusDeletedCollection); 
         console.log(articleCollectionsMinusDeletedCollection);  
 
     }
