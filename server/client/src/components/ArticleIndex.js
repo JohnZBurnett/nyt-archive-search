@@ -37,12 +37,17 @@ class ArticleIndex extends Component
         this.props.history.push('/detail'); 
     }
 
-    filterArticleListFromSearchTerms = () => {
-        return this.props.articleList.filter( article => article.headline.main.toLowerCase().includes(this.props.titleFilter.toLowerCase()))
+    filterArticleListFromSearchTerms = (articleList) => {
+        return articleList.filter( article => article.headline.main.toLowerCase().includes(this.props.titleFilter.toLowerCase()))
     }
 
-    filterArticleListFromStartAndEndMonth = () => {
-        
+    filterArticleListFromStartAndEndMonth = (articleList) => {
+        return articleList.filter( article => parseInt(article.pub_date.month) >= parseInt(this.props.articleStartMonthFilter) && parseInt(article.pub_date.month) <= parseInt(this.props.articleEndDateFilter) )
+    }
+
+    handleFilteringArticleListBySearchOptions = () => {
+        const listFilteredByTitle = this.filterArticleListFromSearchTerms(this.props.articleList); 
+        const listFilteredByDatesAndTitle = this.filterArticleListFromStartAndEndMonth(listFilteredByTitle); 
     }
 
     renderArticleCards = (articleList) => {
