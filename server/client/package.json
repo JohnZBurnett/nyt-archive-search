@@ -23,6 +23,9 @@
     },
     "/api/register": {
       "target": "http://localhost:5000"
+    },
+    "/api/collections": {
+      "target": "http://localhost:5000"
     }
   },
   
