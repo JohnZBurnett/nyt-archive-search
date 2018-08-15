@@ -1,10 +1,40 @@
 import React from 'react'; 
 import { connect } from 'react-redux';
+import { updateArticleStartMonthFilter, updateArticleEndMonthFilter, updateArticleTitleFilter} from '../actions/index'; 
 
-const searchOptions = (props) => {
+function mapStateToProps(state) {
     return(
-        <div>This is a SearchOptions placeholder.</div>
+        {
+            titleFilter: state.titleFilter,
+            articleStartMonthFilter: state.articleStartMonthFilter,
+            articleEndMonthFilter: state.articleEndMonthFilter
+        }
     )
 }
 
-export default searchOptions; 
+function mapDispatchToProps(dispatch) {
+    return(
+        {
+            updateArticleStartMonthFilter: (newStartMonth) => updateArticleStartMonthFilter(newStartMonth),
+            updateArticleEndMonthFilter: (newEndMonth) => updateArticleEndMonthFilter(newEndMonth),
+            updateArticleTitleFilter: (newFilterWords) => updateArticleTitleFilter(newFilterWords)
+        }
+    )
+}
+
+
+const searchOptions = (props) => {
+    function handleUpdatingTitleFilterField(event) {
+        props.updateArticleTitleFilter(event.target.value); 
+        console.log("TITLE FILTER: ", props.titleFilter); 
+    }
+
+    return(
+        <div>
+            <label>Search titles by keywords:</label>
+            <input type="text" value={props.titleFilter} onChange={handleUpdatingTitleFilterField} />
+        </div>
+    )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(searchOptions); 
