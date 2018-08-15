@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
 import ArticleCard from './ArticleCard'; 
 import axios from 'axios'; 
-import { updateCurrentArticle } from '../actions/index'; 
+import { updateCurrentArticle, updateArticleCollections } from '../actions/index'; 
 import { withRouter } from 'react-router-dom'; 
 
 function mapStateToProps(state)   {
@@ -37,6 +37,16 @@ class SavedArticles extends Component {
         }
     }
 
+    handleDeletingCategory(collectionId) {
+        console.log(collectionId); 
+        // axios.delete(`/api/collections/${collectionId}`); 
+        const articleCollectionToDelete = this.props.articleCollections.find( articleCollection => articleCollection._id === collectionId);
+        const indexToRemove = this.props.articleCollections.indexOf(articleCollectionToDelete); 
+        const articleCollectionsMinusDeletedCollection = this.props.articleCollections.slice(0, indexToRemove).concat(this.props.articleCollections.slice(indexToRemove + 1));
+        console.log(articleCollectionsMinusDeletedCollection);  
+
+    }
+
     filterArticleCollectionsForCurrentUserId() {
         return this.props.articleCollections.filter( articleCollection => articleCollection.user === this.props.userId)
     }
@@ -46,7 +56,7 @@ class SavedArticles extends Component {
             this.filterArticleCollectionsForCurrentUserId().map( (articleCollection) => {
                 return (
                  <div key={articleCollection._id}>
-                     <h1>Category: {articleCollection.name} </h1>
+                     <h1>Category: {articleCollection.name} </h1> <button onClick={() => this.handleDeletingCategory(articleCollection._id)}>Delete</button>
                     {this.renderAllArticlesForThisCollection(articleCollection.articles, articles)}
                  </div>
                 )
@@ -83,6 +93,8 @@ class SavedArticles extends Component {
             name: this.state.nameForm
         }
         const result = await axios.post('http://localhost:5000/api/collections', body);
+
+        // this is mutating Redux state - need to update so that it uses a dispatcher 
         this.props.articleCollections.push(result.data); 
 
         // some jank to re-render the page & display the new category
