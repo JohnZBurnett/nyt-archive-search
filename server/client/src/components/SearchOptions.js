@@ -29,8 +29,23 @@ const searchOptions = (props) => {
         console.log("TITLE FILTER: ", props.titleFilter); 
     }
 
+    function generateMonthSelectOptions() {
+        const countArr = [...Array(12).keys()];
+        return countArr.map( num => {
+            return <option value={num}>{num + 1}</option>
+        })
+    }
+
     return(
         <div>
+            <label>Start Month: </label>
+            <select>
+                {generateMonthSelectOptions()}
+            </select>
+            <label>End Month: </label>
+            <select>
+                {generateMonthSelectOptions()}
+            </select>
             <label>Search titles by keywords:</label>
             <input type="text" value={props.titleFilter} onChange={handleUpdatingTitleFilterField} />
         </div>

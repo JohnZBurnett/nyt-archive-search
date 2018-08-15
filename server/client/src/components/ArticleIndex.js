@@ -7,7 +7,9 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = (state) => {
     return {
         articleList: [...state.articleList],
-        titleFilter: state.titleFilter
+        titleFilter: state.titleFilter,
+        articleStartMonthFilter: state.articleStartMonthFilter,
+        articleEndMonthFilter: state.articleEndMonthFilter
     }
 }
 
@@ -39,8 +41,12 @@ class ArticleIndex extends Component
         return this.props.articleList.filter( article => article.headline.main.toLowerCase().includes(this.props.titleFilter.toLowerCase()))
     }
 
+    filterArticleListFromStartAndEndMonth = () => {
+        
+    }
+
     renderArticleCards = (articleList) => {
-        console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
+        // console.log("ARTICLE LIST INSIDE RENDER FUNCTION: ", articleList); 
         return this.filterArticleListFromSearchTerms().slice(this.state.min, this.state.max).map( article => <ArticleCard article={article} key={article._id} onClick={this.handleUpdatingCurrentArticle}/>);
     }
 
