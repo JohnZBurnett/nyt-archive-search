@@ -29,17 +29,23 @@ const searchOptions = (props) => {
         console.log("TITLE FILTER: ", props.titleFilter); 
     }
 
+    async function handleUpdatingStartMonthFilter(event) {
+        const result = await props.updateArticleStartMonthFilter(event.target.value.toString()); 
+    }
+
     function generateMonthSelectOptions() {
         const countArr = [...Array(12).keys()];
         return countArr.map( num => {
-            return <option value={num}>{num + 1}</option>
+            return <option value={num + 1}>{num + 1}</option>
         })
     }
 
+    console.log("SearchOptions PROPS: ", props);
     return(
+        
         <div>
             <label>Start Month: </label>
-            <select>
+            <select value={props.articleStartMonthFilter} onChange={handleUpdatingStartMonthFilter}>
                 {generateMonthSelectOptions()}
             </select>
             <label>End Month: </label>
