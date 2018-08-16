@@ -21,17 +21,20 @@ const DataAnalytics = ({articleList}) => {
                 [key]: categoryData[key]
             })
         }); 
+
+        // sort descending
         catArr = catArr.sort( function(a, b) {
-            return Object.values(a)[0] - Object.values(b)[0]; 
+            return Object.values(b)[0] - Object.values(a)[0]; 
         })
-        console.log("CATEGORY ARR: ", catArr); 
     }
 
     function sortKeywordData(keywordData) {
         const keys = Object.keys(keywordData); 
         keys.forEach( key => {
-            placeKeyValuePairsIntoArrays(keywordData[key]) 
+            keywordData[key] = placeKeyValuePairsIntoArrays(keywordData[key]) 
         })
+        
+        console.log("FULLY SORTED KEYWORD DATA: ", keywordData); 
 
         return keywordData; 
     }
