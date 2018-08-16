@@ -18,7 +18,10 @@ class DataAnalytics extends Component {
     }; 
 
     componentDidMount() {
-        this.renderChart(); 
+        if (this.props.articleList.length > 0 ) {
+            this.renderChart();
+        }
+         
     }
 
     
@@ -75,7 +78,7 @@ class DataAnalytics extends Component {
 
     renderChart() {
         let ctx = document.getElementById("myChart").getContext('2d');
-
+        console.log("ARTICLE LIST: ", this.props.articleList); 
         let myChart = new Chart(ctx, {
             type: 'bar',
             data: {
