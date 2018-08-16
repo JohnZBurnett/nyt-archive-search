@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Chart from 'chart.js'; 
+import { updateArticleStartMonthFilter, updateArticleEndMonthFilter } from '../actions/index';
 
 
 function mapStateToProps(state) {
     return(
         {
-            articleList: state.articleList
+            articleList: state.articleList,
+            articleStartMonthFilter: state.articleStartMonthFilter,
+            articleEndMonthFilter: state.articleEndMonthFilter
+        }
+    )
+}
+
+function mapDispatchToProps(dispatch) {
+    return(
+        {
+            updateArticleStartMonthFilter: (newStartMonth) => dispatch(updateArticleStartMonthFilter(newStartMonth)),
+            updateArticleEndMonthFilter: (newEndMonth) => dispatch(updateArticleEndMonthFilter(newEndMonth))
         }
     )
 }
@@ -19,8 +31,7 @@ class DataAnalytics extends Component {
         let newChart = null;
 
         this.state = {
-            currentCategory: "persons",
-            currentMonth: "1",
+            currentCategory: "persons"
         }
     };  
 
@@ -58,7 +69,7 @@ class DataAnalytics extends Component {
 
     filterArticlesBasedOnCurrMonth(articleList) {
         return articleList.filter( article => {
-           return ( parseInt(article.pub_date.month) === parseInt(this.state.currentMonth) )
+           return ( parseInt(article.pub_date.month) >= parseInt(this.props.articleStartMonthFilter) && parseInt(article.pub_date.month) <= parseInt(this.props.articleEndMonthFilter) )
         })
     }
 
@@ -179,12 +190,46 @@ class DataAnalytics extends Component {
         })
     }
 
+    generateMonthSelectOptions() {
+        const countArr = [...Array(12).keys()];
+        return countArr.map( num => {
+            return <option value={num + 1}>{num + 1}</option>
+        })
+    }
+
+     handleUpdatingStartMonthFilter = (event) => {
+        // we need to update the end month if the current one precedes the new start month 
+        if (parseInt(this.props.articleEndMonthFilter) < event.target.value) {
+            this.props.updateArticleEndMonthFilter(event.target.value.toString()); 
+        }
+
+        this.props.updateArticleStartMonthFilter(event.target.value.toString()); 
+    }
+
+    handleUpdatingEndMonthFilter = (event) => {
+
+        // we also need to update the start month if it's now after the new end month
+        if (parseInt(this.props.articleStartMonthFilter) > event.target.value ) {
+            this.props.updateArticleStartMonthFilter(event.target.value.toString()); 
+        }
+
+        this.props.updateArticleEndMonthFilter(event.target.value.toString()); 
+    }
+
     
     render() {
         
         
             return(
             <div>
+                <label>Start Month: </label>
+                <select value={this.props.articleStartMonthFilter} onChange={this.handleUpdatingStartMonthFilter}>
+                    {this.generateMonthSelectOptions()}
+                </select>
+                <label>End Month: </label>
+                <select value={this.props.articleEndMonthFilter} onChange={this.handleUpdatingEndMonthFilter}>
+                    {this.generateMonthSelectOptions()}
+                </select>
                 <select onChange={this.handleCategoryChange} value={this.state.currentCategory}>
                     <option value="persons">Persons</option>
                     <option value="organizations">Organizations</option>
@@ -199,4 +244,4 @@ class DataAnalytics extends Component {
     }
 }
 
-export default connect(mapStateToProps)(DataAnalytics); 
+export default connect(mapStateToProps, mapDispatchToProps)(DataAnalytics); 

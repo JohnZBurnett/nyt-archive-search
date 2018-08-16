@@ -12,7 +12,9 @@ function mapStateToProps(state)   {
         {
             articleCollections: state.articleCollections,
             articles: state.articleList,
-            userId: state.auth._id
+            userId: state.auth._id,
+            articleStartMonthFilter: state.articleStartMonthFilter,
+            articleEndMonthFilter: state.articleEndMonthFilter
         }
     )
 }

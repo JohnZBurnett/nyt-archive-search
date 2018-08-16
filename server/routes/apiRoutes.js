@@ -6,7 +6,6 @@ const ArticleCollection = require('../models/ArticleCollection').ArticleCollecti
 
 async function getAllArticlesFromDb() {
     const allArticles = await Article.find({
-        "pub_date.month":"01"
     }).lean(); 
     console.log("NUMBER OF ARTICLES FETCHED: ", allArticles.length); 
     return allArticles; 
@@ -79,7 +78,7 @@ module.exports = (app) => {
 
     app.post('/api/current_article', async (req, res) => {
         console.log("REQUEST BODY: ", req.body); 
-        
+
         // this needs to get an article web URL (passed into req body from frontend)
         const resp = await axios.get("https://timesmachine.nytimes.com/svc/tmach/v1/refer" + req.body.web_url.split(".html")[1]); 
         const pdf_url = resp.request.res.responseUrl.split(".html")[0]+".pdf";
