@@ -103,8 +103,6 @@ class DataAnalytics extends Component {
 
     renderChart() {
         let ctx = document.getElementById("myChart").getContext('2d');
-
-
         /* TYPES: 
         creative_works, glocations, organizations, persons, subject 
         */
@@ -164,12 +162,26 @@ class DataAnalytics extends Component {
         })
     }
 
+    handleCategoryChange(event) {
+        this.setState({
+            currentCategory: event.target.value
+        })
+    }
+
     
     render() {
         
         
             return(
-            <canvas id="myChart" width="800" height="600"></canvas>
+            <div>
+                <select onChange={this.handleCategoryChange} value={this.state.currentCategory}>
+                    <option value="persons">Persons</option>
+                    <option value="organizations">Organizations</option>
+                    <option value="subject">Subject</option>
+                    <option value="glocations">Location</option>
+                </select>
+                <canvas id="myChart" width="800" height="600"></canvas>
+            </div>
         ) 
     }
 }
