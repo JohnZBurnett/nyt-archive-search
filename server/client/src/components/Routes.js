@@ -6,6 +6,7 @@ import ArticleIndex from './ArticleIndex';
 import ArticleDetail from './ArticleDetail'; 
 import SavedArticles from './SavedArticles';
 import ContentContainer from './ContentContainer';  
+import DataAnalytics from './DataAnalytics'; 
 import Login from './Login';
 import Register from './Register';
 import App from '../App';
@@ -22,6 +23,7 @@ const Routes = () => {
             <Route path="/saved" component={SavedArticles} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/analytics" component={DataAnalytics} />
             <Route component={ErrorPage}/>
         </Switch>
         </Fragment>
