@@ -39,6 +39,7 @@ const Navbar = (props) => {
                 { props.auth ? <Link className="navbar-link typewriter-font" to="/saved">Saved Articles</Link> : null}
                 { props.auth ? null : <Link className="navbar-link typewriter-font" to="/login">Log In</Link> }
                 { props.auth ? null : <Link className="navbar-link typewriter-font" to="/register">Sign Up</Link>}
+                <Link className="navbar-link typewriter-font" to="/analytics">Analytics</Link>
                 { props.auth ? <a className="navbar-link typewriter-font" href="#" onClick={redirectToIndex}>Log Out</a> : null } 
             </div>
         </Fragment>
