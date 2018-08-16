@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chart.js": "^2.7.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
@@ -28,7 +29,6 @@
       "target": "http://localhost:5000"
     }
   },
-  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
