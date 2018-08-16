@@ -36,7 +36,7 @@ class DataAnalytics extends Component {
 
         // sort descending
         catArr = catArr.sort( function(a, b) {
-            return Object.values(b)[0] - Object.values(a)[0]; 
+            return Object.values(b)[0]["count"] - Object.values(a)[0]["count"]; 
         })
 
         return catArr; 
@@ -65,9 +65,12 @@ class DataAnalytics extends Component {
                     };
                 } 
                 if (keywordData[keyword.name][keyword.value] === undefined) {
-                    keywordData[keyword.name][keyword.value] = 1 
+                    keywordData[keyword.name][keyword.value] = {
+                        name: keyword.value,
+                        count: 1
+                    }
                 } else {
-                    keywordData[keyword.name][keyword.value] += 1; 
+                    keywordData[keyword.name][keyword.value]["count"] += 1; 
                 }
             })
         })
@@ -76,23 +79,46 @@ class DataAnalytics extends Component {
         return keywordData; 
     }
 
+    renderTopTenDataForChart(category) {
+        const topTenResults = this.sortKeywordData(this.populateKeywordData(this.props.articleList))[category].slice(0, 10); 
+        const topTenKeys = topTenResults.map( result => Object.keys(result)); 
+        const topTenResultNames = topTenResults.map(result => result[Object.keys(result)[0]].name)
+        const topTenResultCounts = topTenResults.map( result => result[Object.keys(result)[0]].count); 
+        return {
+            labels: topTenResultNames,
+            data: topTenResultCounts
+        }
+    }
+
+
     renderChart() {
         let ctx = document.getElementById("myChart").getContext('2d');
-        console.log("ARTICLE LIST: ", this.props.articleList); 
+
+
+        /* TYPES: 
+        creative_works, glocations, organizations, persons, subject 
+        */
+
+        const data = this.renderTopTenDataForChart("persons"); 
+
         let myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                labels: data.labels,
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    label: 'Number of Article Appearances',
+                    data: data.data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(54, 162, 8, 0.2)',
+                        'rgba(255, 206, 22, 0.2)',
+                        'rgba(75, 20, 192, 0.2)',
+                        'rgba(30, 102, 255, 0.2)'
                     ],
                     borderColor: [
                         'rgba(255,99,132,1)',
@@ -100,7 +126,11 @@ class DataAnalytics extends Component {
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)' 
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)' 
                     ],
                     borderWidth: 1
                 }]
@@ -120,9 +150,9 @@ class DataAnalytics extends Component {
     
     render() {
         
-        console.log("FUNCTION RUN RESULTS: ", this.sortKeywordData(this.populateKeywordData(this.props.articleList))["persons"]);
+        
             return(
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="myChart" width="200" height="200"></canvas>
         ) 
     }
 }
