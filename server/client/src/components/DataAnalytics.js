@@ -26,11 +26,15 @@ const DataAnalytics = ({articleList}) => {
         catArr = catArr.sort( function(a, b) {
             return Object.values(b)[0] - Object.values(a)[0]; 
         })
+
+        return catArr; 
     }
 
     function sortKeywordData(keywordData) {
         const keys = Object.keys(keywordData); 
         keys.forEach( key => {
+            console.log("KEY: ", key);
+            console.log("KEYWORD DATA[KEY]", keywordData[key]); 
             keywordData[key] = placeKeyValuePairsIntoArrays(keywordData[key]) 
         })
         
@@ -39,24 +43,27 @@ const DataAnalytics = ({articleList}) => {
         return keywordData; 
     }
 
-    const keywordData = {};
 
-    articleList.forEach( (article) => {
-        article.keywords.forEach( (keyword) => {
-            if (keywordData[keyword.name] === undefined) {
-                keywordData[keyword.name] = {
-                };
-            } 
-            if (keywordData[keyword.name][keyword.value] === undefined) {
-                keywordData[keyword.name][keyword.value] = 1 
-            } else {
-                keywordData[keyword.name][keyword.value] += 1; 
-            }
+    function populateKeywordData(articleList) {
+        const keywordData = {};
+        articleList.forEach( (article) => {
+            article.keywords.forEach( (keyword) => {
+                if (keywordData[keyword.name] === undefined) {
+                    keywordData[keyword.name] = {
+                    };
+                } 
+                if (keywordData[keyword.name][keyword.value] === undefined) {
+                    keywordData[keyword.name][keyword.value] = 1 
+                } else {
+                    keywordData[keyword.name][keyword.value] += 1; 
+                }
+            })
         })
-    })
 
-    console.log("KEYWORD DATA: ", keywordData);
-    console.log("SORTED KEYWORD DATA: ", sortKeywordData(keywordData)); 
+        return keywordData; 
+    }
+
+    sortKeywordData(populateKeywordData(articleList)); 
     return(
         null
     ) 
