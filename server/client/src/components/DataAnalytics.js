@@ -15,6 +15,11 @@ class DataAnalytics extends Component {
 
     constructor(props) {
         super(props); 
+
+        this.state = {
+            currentCategory: "persons",
+            currentMonth: "1"
+        }
     }; 
 
     componentDidMount() {
@@ -40,6 +45,12 @@ class DataAnalytics extends Component {
         })
 
         return catArr; 
+    }
+
+    filterArticlesBasedOnCurrMonth(articleList) {
+        articleList.filter( article => {
+           return ( parseInt(article.pub_date.month) === parseInt(this.state.currentMonth) )
+        })
     }
 
     sortKeywordData(keywordData) {
@@ -80,7 +91,7 @@ class DataAnalytics extends Component {
     }
 
     renderTopTenDataForChart(category) {
-        const topTenResults = this.sortKeywordData(this.populateKeywordData(this.props.articleList))[category].slice(0, 10); 
+        const topTenResults = this.sortKeywordData(this.populateKeywordData(this.filterArticlesBasedOnCurrentMonth(this.props.articleList)))[category].slice(0, 10); 
         const topTenResultNames = topTenResults.map(result => result[Object.keys(result)[0]].name)
         const topTenResultCounts = topTenResults.map( result => result[Object.keys(result)[0]].count); 
         return {
