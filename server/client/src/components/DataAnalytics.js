@@ -16,17 +16,26 @@ class DataAnalytics extends Component {
     constructor(props) {
         super(props); 
 
+        let newChart = null;
+
         this.state = {
             currentCategory: "persons",
-            currentMonth: "1"
+            currentMonth: "1",
         }
-    }; 
+    };  
 
     componentDidMount() {
         if (this.props.articleList.length > 0 ) {
             this.renderChart();
         }
          
+    }
+
+    componentDidUpdate() {
+        if (this.props.articleList.length > 0 ) {
+            document.getElementById('canvas-div').innerHTML = ''; 
+            this.renderChart(); 
+        }
     }
 
     
@@ -102,12 +111,14 @@ class DataAnalytics extends Component {
 
 
     renderChart() {
+        const chartDiv = document.getElementById('canvas-div'); 
+        chartDiv.innerHTML = '<canvas id="myChart" width="800" height="600"></canvas>'; 
         let ctx = document.getElementById("myChart").getContext('2d');
         /* TYPES: 
         creative_works, glocations, organizations, persons, subject 
         */
 
-        const data = this.renderTopTenDataForChart("organizations"); 
+        const data = this.renderTopTenDataForChart(this.state.currentCategory); 
 
         let myChart = new Chart(ctx, {
             type: 'bar',
@@ -162,7 +173,7 @@ class DataAnalytics extends Component {
         })
     }
 
-    handleCategoryChange(event) {
+    handleCategoryChange = (event) => {
         this.setState({
             currentCategory: event.target.value
         })
@@ -180,7 +191,9 @@ class DataAnalytics extends Component {
                     <option value="subject">Subject</option>
                     <option value="glocations">Location</option>
                 </select>
-                <canvas id="myChart" width="800" height="600"></canvas>
+                <div id="canvas-div">
+                    
+                </div> 
             </div>
         ) 
     }
