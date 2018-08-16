@@ -81,7 +81,6 @@ class DataAnalytics extends Component {
 
     renderTopTenDataForChart(category) {
         const topTenResults = this.sortKeywordData(this.populateKeywordData(this.props.articleList))[category].slice(0, 10); 
-        const topTenKeys = topTenResults.map( result => Object.keys(result)); 
         const topTenResultNames = topTenResults.map(result => result[Object.keys(result)[0]].name)
         const topTenResultCounts = topTenResults.map( result => result[Object.keys(result)[0]].count); 
         return {
@@ -99,7 +98,7 @@ class DataAnalytics extends Component {
         creative_works, glocations, organizations, persons, subject 
         */
 
-        const data = this.renderTopTenDataForChart("persons"); 
+        const data = this.renderTopTenDataForChart("organizations"); 
 
         let myChart = new Chart(ctx, {
             type: 'bar',
@@ -136,10 +135,17 @@ class DataAnalytics extends Component {
                 }]
             },
             options: {
+                responsive: false,
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true
+                            beginAtZero:true,
+                            autoSkip: false
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            autoSkip: false
                         }
                     }]
                 }
@@ -152,7 +158,7 @@ class DataAnalytics extends Component {
         
         
             return(
-            <canvas id="myChart" width="200" height="200"></canvas>
+            <canvas id="myChart" width="800" height="600"></canvas>
         ) 
     }
 }
