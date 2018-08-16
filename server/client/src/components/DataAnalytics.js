@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Chart from 'chart.js'; 
 
@@ -11,10 +11,18 @@ function mapStateToProps(state) {
     )
 }
 
-const DataAnalytics = ({articleList}) => {
+class DataAnalytics extends Component {
+
+    constructor(props) {
+        super(props); 
+    }; 
+
+    componentDidMount() {
+        this.renderChart(); 
+    }
 
     
-    function placeKeyValuePairsIntoArrays(categoryData) {
+    placeKeyValuePairsIntoArrays(categoryData) {
         let catArr = []; 
         const keys = Object.keys(categoryData); 
         keys.forEach( key => {
@@ -31,21 +39,21 @@ const DataAnalytics = ({articleList}) => {
         return catArr; 
     }
 
-    function sortKeywordData(keywordData) {
+    sortKeywordData(keywordData) {
         const keys = Object.keys(keywordData); 
         keys.forEach( key => {
-            console.log("KEY: ", key);
-            console.log("KEYWORD DATA[KEY]", keywordData[key]); 
-            keywordData[key] = placeKeyValuePairsIntoArrays(keywordData[key]) 
+            // console.log("KEY: ", key);
+            // console.log("KEYWORD DATA[KEY]", keywordData[key]); 
+            keywordData[key] = this.placeKeyValuePairsIntoArrays(keywordData[key]) 
         })
         
-        console.log("FULLY SORTED KEYWORD DATA: ", keywordData); 
+        // console.log("FULLY SORTED KEYWORD DATA: ", keywordData); 
 
         return keywordData; 
     }
 
 
-    function populateKeywordData(articleList) {
+    populateKeywordData(articleList) {
         const keywordData = {};
         articleList.forEach( (article) => {
             article.keywords.forEach( (keyword) => {
@@ -65,8 +73,9 @@ const DataAnalytics = ({articleList}) => {
         return keywordData; 
     }
 
-    function renderChart() {
+    renderChart() {
         let ctx = document.getElementById("myChart").getContext('2d');
+
         let myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -105,10 +114,14 @@ const DataAnalytics = ({articleList}) => {
         })
     }
 
-    sortKeywordData(populateKeywordData(articleList)); 
-    return(
-        <canvas id="myChart" width="400" height="400"></canvas>
-    ) 
+    
+    render() {
+        
+        console.log("FUNCTION RUN RESULTS: ", this.sortKeywordData(this.populateKeywordData(this.props.articleList))["persons"]);
+            return(
+            <canvas id="myChart" width="400" height="400"></canvas>
+        ) 
+    }
 }
 
 export default connect(mapStateToProps)(DataAnalytics); 
