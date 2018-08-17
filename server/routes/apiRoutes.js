@@ -103,7 +103,8 @@ module.exports = (app) => {
         console.log("PARAMS ID: ", req.params); 
         const newComment = new Comment({
             body: req.body.commentBody,
-            article: req.params.id
+            article: req.params.id,
+            user: req.body.user
         });
         const saveResult = await newComment.save(); 
         res.send(newComment); 
