@@ -99,6 +99,16 @@ module.exports = (app) => {
         res.send(commentResults); 
     }); 
 
+    app.post('/api/articlecomments/:id', async(req, res) => {
+        console.log("PARAMS ID: ", req.params); 
+        const newComment = new Comment({
+            body: req.body.commentBody,
+            article: req.params.id
+        });
+        const saveResult = await newComment.save(); 
+        res.send(newComment); 
+    })
+
     app.get('/api/pdf_data', async (req, res) => {
         const resp = await axios.get('https://timesmachine.nytimes.com/timesmachine/1943/01/01/83892511.pdf'); 
         console.log("PDF RESPONSE BODY: ", resp.data); 

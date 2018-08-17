@@ -1,4 +1,4 @@
-import { UPDATE_ARTICLE_START_MONTH_FILTER, UPDATE_ARTICLE_END_MONTH_FILTER, UPDATE_ARTICLE_TITLE_FILTER, UPDATE_CURRENT_ARTICLE, RECORD_USER_LOGOUT, UPDATE_ARTICLE_COLLECTIONS, ADD_ARTICLES_FROM_FETCH, FILTER_ARTICLES, UPDATE_CURRENT_USER, SAVE_ARTICLE, GET_ARTICLE_COLLECTIONS} from './actionTypes';
+import { UPDATE_ARTICLE_START_MONTH_FILTER, UPDATE_CURRENT_ARTICLE_COMMENTS, UPDATE_ARTICLE_END_MONTH_FILTER, UPDATE_ARTICLE_TITLE_FILTER, UPDATE_CURRENT_ARTICLE, RECORD_USER_LOGOUT, UPDATE_ARTICLE_COLLECTIONS, ADD_ARTICLES_FROM_FETCH, FILTER_ARTICLES, UPDATE_CURRENT_USER, SAVE_ARTICLE, GET_ARTICLE_COLLECTIONS} from './actionTypes';
 import axios from 'axios'; 
 
 export const updateArticleStartMonthFilter = startMonth => ({
@@ -39,6 +39,10 @@ export const recordUserLogout = () => ({
 
 export const updateArticleCollections = articleCollections => ({
     type: UPDATE_ARTICLE_COLLECTIONS, payload: articleCollections
+})
+
+export const updateCurrentArticleComments = articleComment => ({
+    type: UPDATE_CURRENT_ARTICLE_COMMENTS, payload: articleComment
 })
 
 export const fetchArticlesFromApi = async (dispatch, getState) => {

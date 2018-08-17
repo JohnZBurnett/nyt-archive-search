@@ -102,6 +102,7 @@ class ArticleDetail extends Component {
                 <div className="article-pdf">
                     <object data={this.state.pdfUrl} width="500" height="500"></object>
                 </div>
+                {<NewCommentBox />}
             </div>
         );
     }
