@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
 import axios from 'axios'; 
-import pdfjsLib from 'pdfjs-dist'; 
+import NewCommentBox from './NewCommentBox'; 
 
 
 const mapStateToProps = (state) => {
