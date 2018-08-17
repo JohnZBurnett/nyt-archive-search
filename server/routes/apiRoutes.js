@@ -2,7 +2,8 @@ const Article = require('../models/Article').Article;
 const passport = require('passport'); 
 const User = require('../models/User').User; 
 const axios = require('axios'); 
-const ArticleCollection = require('../models/ArticleCollection').ArticleCollection; 
+const ArticleCollection = require('../models/ArticleCollection').ArticleCollection;
+const Comment = require('../models/Comment').Comment;  
 
 async function getAllArticlesFromDb() {
     const allArticles = await Article.find({
@@ -88,6 +89,15 @@ module.exports = (app) => {
         }
         res.send(body); 
     })
+
+    app.get('/api/articlecomments/:id', async(req, res) => {
+        const articleResult = await Article.findById(req.params.id); 
+        const commentResults = await Comment.find({
+            article: articleResult._id
+        }); 
+
+        res.send(commentResults); 
+    }); 
 
     app.get('/api/pdf_data', async (req, res) => {
         const resp = await axios.get('https://timesmachine.nytimes.com/timesmachine/1943/01/01/83892511.pdf'); 
