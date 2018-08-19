@@ -7,6 +7,7 @@ const Comment = require('../models/Comment').Comment;
 
 async function getAllArticlesFromDb() {
     const allArticles = await Article.find({
+        "pub_date.month":"01"
     }).lean(); 
     console.log("NUMBER OF ARTICLES FETCHED: ", allArticles.length); 
     return allArticles; 
@@ -91,6 +92,7 @@ module.exports = (app) => {
     })
 
     app.get('/api/articlecomments/:id', async(req, res) => {
+        console.log("ARTICLE COMMENTS HIT"); 
         const articleResult = await Article.findById(req.params.id); 
         const commentResults = await Comment.find({
             article: articleResult._id

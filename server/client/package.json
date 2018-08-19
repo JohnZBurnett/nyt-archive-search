@@ -27,6 +27,9 @@
     },
     "/api/collections": {
       "target": "http://localhost:5000"
+    },
+    "api/articlecomments/:id": {
+      "target": "http://localhost:5000"
     }
   },
   "scripts": {

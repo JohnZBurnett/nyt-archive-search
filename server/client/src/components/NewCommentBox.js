@@ -6,7 +6,8 @@ import { updateCurrentArticleComments } from '../actions/index';
 function mapStateToProps(state) {
     return(
         {
-            currentArticle: state.currentArticle
+            currentArticle: state.currentArticle,
+            auth: state.auth
         }
     )
 }
@@ -31,10 +32,11 @@ class NewCommentBox extends Component {
 
     handleAddingNewComment = async (event) => {
         const body = {
-            commentBody: this.state.newCommentForm
+            commentBody: this.state.newCommentForm,
+            user: this.props.auth._id
         }
 
-        const commentResult = await axios.post(`api/articlecomments/${this.props.currentArticle._id}`, body);
+        const commentResult = await axios.post(`http://localhost:5000/api/articlecomments/${this.props.currentArticle._id}`, body);
         this.props.updateCurrentArticleComments(commentResult); 
     }
 
