@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
 import axios from 'axios'; 
 import NewCommentBox from './NewCommentBox'; 
+import CommentList from './CommentList'; 
 
 
 const mapStateToProps = (state) => {
@@ -103,6 +104,7 @@ class ArticleDetail extends Component {
                     <object data={this.state.pdfUrl} width="500" height="500"></object>
                 </div>
                 {<NewCommentBox />}
+                { <CommentList />}
             </div>
         );
     }
