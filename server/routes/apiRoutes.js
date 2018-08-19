@@ -91,6 +91,13 @@ module.exports = (app) => {
         res.send(body); 
     })
 
+    app.get('/api/articlecomments', async(req, res) => {
+        const comments = await Comment.find({
+
+        });
+        res.send(comments); 
+    })
+
     app.get('/api/articlecomments/:id', async(req, res) => {
         console.log("ARTICLE COMMENTS HIT"); 
         const articleResult = await Article.findById(req.params.id); 
