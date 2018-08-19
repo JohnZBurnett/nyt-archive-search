@@ -8,3 +8,5 @@ const Comment = ({commentInfo}) => {
         </div>
     )
 }
+
+export default Comment; 

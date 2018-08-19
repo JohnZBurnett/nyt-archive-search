@@ -75,6 +75,8 @@ export const getArticleCollectionsFromApi = async (dispatch, getState) => {
 }
 
 export const getArticleCommentsFromApi = async (dispatch, getState) => {
+    console.log("GET ARTICLE COMMENTS IS RUNNING"); 
     const articleCommentResults = await axios.get('http://localhost:5000/api/articlecomments'); 
+    console.log("ARTICLE COMMENT RESULTS: ", articleCommentResults); 
     dispatch(updateCurrentArticleComments(articleCommentResults.data)); 
 }

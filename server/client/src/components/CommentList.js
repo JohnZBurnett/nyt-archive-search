@@ -15,9 +15,10 @@ function mapStateToProps(state) {
 
 const CommentList = (props) => {
 
-    renderAllComments = () => {
+    const renderAllComments = () => {
+        console.log("ARTICLE COMMENTS: ", props.articleComments); 
         const filteredComments = filterArticleComments(props.articleComments); 
-
+        console.log("FILTERED COMMENTS: ", filteredComments); 
         return(
             filteredComments.map( comment => {
                 return <Comment commentInfo={comment} /> 
@@ -25,7 +26,7 @@ const CommentList = (props) => {
         )
     }
 
-    filterArticleComments = (articleComments) => {
+    const filterArticleComments = (articleComments) => {
         return articleComments.filter( comment => {
             return (comment.user === props.auth._id && comment.article === props.currentArticle._id)
         })
