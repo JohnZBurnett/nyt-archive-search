@@ -1,4 +1,4 @@
-import { UPDATE_ARTICLE_START_MONTH_FILTER, UPDATE_CURRENT_ARTICLE_COMMENTS, UPDATE_ARTICLE_END_MONTH_FILTER, UPDATE_ARTICLE_TITLE_FILTER, UPDATE_CURRENT_ARTICLE, RECORD_USER_LOGOUT, UPDATE_ARTICLE_COLLECTIONS, ADD_ARTICLES_FROM_FETCH, FILTER_ARTICLES, UPDATE_CURRENT_USER, SAVE_ARTICLE, GET_ARTICLE_COLLECTIONS} from './actionTypes';
+import { UPDATE_ARTICLE_START_MONTH_FILTER, UPDATE_ARTICLE_COMMENTS, UPDATE_CURRENT_ARTICLE_COMMENTS, UPDATE_ARTICLE_END_MONTH_FILTER, UPDATE_ARTICLE_TITLE_FILTER, UPDATE_CURRENT_ARTICLE, RECORD_USER_LOGOUT, UPDATE_ARTICLE_COLLECTIONS, ADD_ARTICLES_FROM_FETCH, FILTER_ARTICLES, UPDATE_CURRENT_USER, SAVE_ARTICLE, GET_ARTICLE_COLLECTIONS} from './actionTypes';
 import axios from 'axios'; 
 
 export const updateArticleStartMonthFilter = startMonth => ({
@@ -41,6 +41,10 @@ export const updateArticleCollections = articleCollections => ({
     type: UPDATE_ARTICLE_COLLECTIONS, payload: articleCollections
 })
 
+export const updateArticleComments = articleComments => ({
+    type: UPDATE_ARTICLE_COMMENTS, payload: articleComments
+})
+
 export const updateCurrentArticleComments = articleComment => ({
     type: UPDATE_CURRENT_ARTICLE_COMMENTS, payload: articleComment
 })
@@ -68,4 +72,9 @@ export const getArticleCollectionsFromApi = async (dispatch, getState) => {
     dispatch(updateArticleCollections(articleCollectionResults.data)); 
     console.log("DISPATCH: ", dispatch); 
     console.log("ARTICLE COLLECTION RESULTS: ", articleCollectionResults); 
+}
+
+export const getArticleCommentsFromApi = async (dispatch, getState) => {
+    const articleCommentResults = await axios.get('http://localhost:5000/api/articlecomments'); 
+    dispatch(updateCurrentArticleComments(articleCommentResults.data)); 
 }

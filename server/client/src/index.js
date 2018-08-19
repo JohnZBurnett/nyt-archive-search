@@ -15,6 +15,7 @@ const initialState = {
     userSavedArticles: {},
     articleList: [],
     articleCollections: [],
+    articleComments: [],
     auth: null,
     titleFilter: "",
     articleStartMonthFilter: "1",

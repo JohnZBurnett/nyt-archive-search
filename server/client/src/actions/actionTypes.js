@@ -11,3 +11,4 @@ export const UPDATE_ARTICLE_TITLE_FILTER = "update_article_title_filter";
 export const UPDATE_ARTICLE_START_MONTH_FILTER = "update_article_start_month_filter";
 export const UPDATE_ARTICLE_END_MONTH_FILTER = "update_article_end_month_filter"; 
 export const UPDATE_CURRENT_ARTICLE_COMMENTS = "update_current_article_comments"; 
+export const UPDATE_ARTICLE_COMMENTS = "update_article_comments"; 
