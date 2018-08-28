@@ -92,6 +92,7 @@ class ArticleIndex extends Component
             <div>
                 <button onClick={this.goToPreviousPageOfArticles}>Previous Page</button>
                 <button onClick={this.goToNextPageOfArticles}>Next Page</button>
+                <br />
                 {this.props.articleList.length > 0 ? this.renderArticleCards(this.props.articleList) : "Loading Articles"}
             </div>
         );

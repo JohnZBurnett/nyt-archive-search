@@ -7,6 +7,9 @@
   border-color: red;
   border-width: 2px;
   margin: 10px 1px; 
+  width: 20%;
+  display: inline-block;
+  align-self: top; 
 }
 
 .App-logo {
@@ -28,10 +31,27 @@
 .article-pdf {
   margin: 0 auto; 
   width: 50%;
+  float: right; 
 }
 
 .site-header {
   text-align: center;
+}
+
+.summary {
+  width: 50%; 
+}
+
+.float-left {
+  float: left; 
+}
+
+.half-width {
+  width: 50%; 
+}
+
+.headline {
+  width: 50%; 
 }
 
 .headline-font {

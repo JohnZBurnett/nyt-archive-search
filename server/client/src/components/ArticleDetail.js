@@ -90,14 +90,16 @@ class ArticleDetail extends Component {
     render() {
         return(
             <div>
-                <h1 className="headline-font">{this.props.article.headline.main}</h1>
-                <p className="typewriter-font">SNIPPET: {this.props.article.snippet}</p>
-                <select value={this.state.collectionId} onChange={this.handleCollectionIdChange}>
-                    <option value="Placeholder">Please select a value:</option>
-                    {this.renderAllUserCollectionsAsSelectOptions()}
-                </select>
-                <button onClick={this.saveArticleToCollection}>Save</button>
-                <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
+                <div className="float-left half-width">
+                    <h1 className="headline-font headline">{this.props.article.headline.main}</h1>
+                    <p className="typewriter-font summary">SNIPPET: {this.props.article.snippet}</p>
+                    <select value={this.state.collectionId} onChange={this.handleCollectionIdChange}>
+                        <option value="Placeholder">Please select a value:</option>
+                        {this.renderAllUserCollectionsAsSelectOptions()}
+                    </select>
+                    <button onClick={this.saveArticleToCollection}>Save</button>
+                    <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
+                </div>
                 <br/>
                 {/* this.state.pdfUrlFound ? this.getAndRenderPdf() : null */}
                 <div className="article-pdf">
