@@ -59,17 +59,21 @@ const searchOptions = (props) => {
     console.log("SearchOptions PROPS: ", props);
     return(
         
-        <div>
-            <label>Start Month: </label>
-            <select value={props.articleStartMonthFilter} onChange={handleUpdatingStartMonthFilter}>
-                {generateMonthSelectOptions()}
-            </select>
-            <label>End Month: </label>
-            <select value={props.articleEndMonthFilter} onChange={handleUpdatingEndMonthFilter}>
-                {generateMonthSelectOptions()}
-            </select>
-            <label>Search titles by keywords:</label>
-            <input type="text" value={props.titleFilter} onChange={handleUpdatingTitleFilterField} />
+        <div className="keyword-search">
+            <div className="keyword-options">
+                <label>Search titles by keywords:</label>
+                <input type="text" value={props.titleFilter} onChange={handleUpdatingTitleFilterField} />
+            </div>
+            <div className="month-options">
+                <label>Start Month: </label>
+                <select value={props.articleStartMonthFilter} onChange={handleUpdatingStartMonthFilter}>
+                    {generateMonthSelectOptions()}
+                </select>
+                <label className="option-gap">End Month: </label>
+                <select value={props.articleEndMonthFilter} onChange={handleUpdatingEndMonthFilter}>
+                    {generateMonthSelectOptions()}
+                </select>
+            </div>
         </div>
     )
 }

@@ -17,6 +17,15 @@
   height: 80px;
 }
 
+.main-body {
+  width: 80%;
+  margin: 0 auto; 
+}
+
+.option-gap {
+  margin-left: 1em; 
+}
+
 .App-header {
   background-color: #222;
   height: 150px;
@@ -26,6 +35,21 @@
 
 .navbar-link {
   margin: 5px; 
+}
+
+.month-options {
+  display: inline-block;
+  margin-left: 1em; 
+}
+
+.keyword-options {
+  display: inline-block; 
+}
+
+.keyword-search {
+  margin: 0 auto;
+  margin-top: 1em; 
+  display: inline-block;   
 }
 
 .article-pdf {
