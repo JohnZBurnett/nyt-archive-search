@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   render() {
-    return(<div>
+    return(<div className="main-body">
       <BrowserRouter>
         <Routes />
       </BrowserRouter>

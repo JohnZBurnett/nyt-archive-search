@@ -89,11 +89,13 @@ class ArticleIndex extends Component
     
     render() {
         return(
-            <div>
+            <div className="article-container">
                 <button onClick={this.goToPreviousPageOfArticles}>Previous Page</button>
                 <button onClick={this.goToNextPageOfArticles}>Next Page</button>
                 <br />
+            <div className="article-card-container">
                 {this.props.articleList.length > 0 ? this.renderArticleCards(this.props.articleList) : "Loading Articles"}
+            </div>
             </div>
         );
     }   

@@ -3,8 +3,8 @@
 }
 
 .card {
-  border-style: solid;
-  border-color: red;
+  /* border-style: solid; */
+  /* border-color: red; */
   border-width: 2px;
   margin: 10px 1px; 
   width: 20%;
@@ -19,6 +19,21 @@
 
 .main-body {
   width: 80%;
+  margin: 0 auto;
+  margin-top: -1.3em;  
+  border: 5px;
+  border-style: solid; 
+}
+
+.page-background {
+}
+
+.article-container {
+  width: 90%;
+  margin: 0 auto; 
+}
+
+.article-card-container {
   margin: 0 auto; 
 }
 
@@ -60,6 +75,8 @@
 
 .site-header {
   text-align: center;
+  display: block;
+  padding-top: 20px;
 }
 
 .summary {
