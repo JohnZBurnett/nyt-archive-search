@@ -32,7 +32,6 @@ const Navbar = (props) => {
 
     return(
         <Fragment>
-            <h1 className="site-header typewriter-font">1943: A Year in the Times</h1>
             <div className="navbar">
                 <Link className="navbar-link typewriter-font" to="/">Home</Link>
                 <Link className="navbar-link typewriter-font" to="/index">Index</Link>

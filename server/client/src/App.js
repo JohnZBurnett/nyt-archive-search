@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
@@ -30,10 +30,14 @@ class App extends Component {
   }
 
   render() {
-    return(<div className="main-body">
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
+    return(
+    <div className="page-container">
+      <h1 className="site-header typewriter-font">1943: A Year in the Times</h1>
+      <div className="main-body">
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </div>
     </div>)
   }
     
