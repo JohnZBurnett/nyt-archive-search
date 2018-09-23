@@ -33,7 +33,7 @@ class App extends Component {
     return(
     <div className="page-container">
       <h1 className="site-header typewriter-font">1943: A Year in the Times</h1>
-      <div className="main-body">
+      <div>
         <BrowserRouter>
           <Routes />
         </BrowserRouter>

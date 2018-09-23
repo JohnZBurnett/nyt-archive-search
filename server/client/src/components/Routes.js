@@ -16,6 +16,7 @@ const Routes = () => {
     return(
         <Fragment>
         <Navbar />
+        <div className="main-body">
         <Switch>
             <Route exact path="/" component={LandingPage}/>
             <Route path="/index" component={ContentContainer} />
@@ -26,6 +27,7 @@ const Routes = () => {
             <Route path="/analytics" component={DataAnalytics} />
             <Route component={ErrorPage}/>
         </Switch>
+        </div>
         </Fragment>
     )
 }

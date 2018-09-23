@@ -20,13 +20,8 @@
 .main-body {
   width: 80%;
   margin: 0 auto;
-  margin-top: -1.3em;  
-  border: 5px;
-  border-style: solid; 
 }
 
-.page-background {
-}
 
 .article-container {
   width: 90%;
@@ -50,12 +45,23 @@
 
 .navbar-link {
   margin: 5px; 
+  padding: 5px;
+}
+
+.navbar-link:visited {
+  color: white;
+}
+
+.navbar-link:hover {
+  color: black;
+  background-color: white;
 }
 
 .navbar {
   background-color: black;
   color: white;
-  padding: 5px;
+  padding: 10px;
+  text-align: center; 
 }
 
 .month-options {
@@ -83,7 +89,7 @@
   text-align: center;
   display: block;
   padding-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: -5px;
   background-color: black;
   color: white; 
 }
