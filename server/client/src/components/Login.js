@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'; 
+import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 class Login extends Component {
 
@@ -34,7 +35,7 @@ class Login extends Component {
 
    render() {
     return(
-        <div>
+        /* <div>
             <form action="/api/login" method="post">
     <div>
         <label>Username:</label>
@@ -48,9 +49,42 @@ class Login extends Component {
         <input type="submit" value="Log In"/>
     </div>
 </form>
-        </div>
+        </div> */
+        <Form>
+            <Form.Field>
+            <label>First Name</label>
+            <input placeholder='First Name' />
+            </Form.Field>
+            <Form.Field>
+            <label>Last Name</label>
+            <input placeholder='Last Name' />
+            </Form.Field>
+            <Form.Field>
+            <Checkbox label='I agree to the Terms and Conditions' />
+            </Form.Field>
+            <Button type='submit'>Submit</Button>
+        </Form>
     )
    } 
 }
 
 export default Login; 
+
+
+
+const FormExampleForm = () => (
+  <Form>
+    <Form.Field>
+      <label>First Name</label>
+      <input placeholder='First Name' />
+    </Form.Field>
+    <Form.Field>
+      <label>Last Name</label>
+      <input placeholder='Last Name' />
+    </Form.Field>
+    <Form.Field>
+      <Checkbox label='I agree to the Terms and Conditions' />
+    </Form.Field>
+    <Button type='submit'>Submit</Button>
+  </Form>
+)
