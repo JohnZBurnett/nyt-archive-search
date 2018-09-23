@@ -25,14 +25,6 @@ class Login extends Component {
         })
     }
 
-    // handleFormSubmit = async (event) => {
-    //     event.preventDefault(); 
-
-    //     const { username, password } = this.state;
-    //     let result = await axios.post('/api/login', { username, password }); 
-    //     console.log("RESULT :", result); 
-    // }
-
    render() {
     return(
         /* <div>
@@ -50,19 +42,18 @@ class Login extends Component {
     </div>
 </form>
         </div> */
-        <Form>
+        <Form action="/api/login" method="post">
             <Form.Field>
-            <label>First Name</label>
-            <input placeholder='First Name' />
+            <label>Username:</label>
+            <input type="text" name="username" onChange={this.handleUsernameChange}/> 
             </Form.Field>
             <Form.Field>
-            <label>Last Name</label>
-            <input placeholder='Last Name' />
+            <label>Password:</label>
+            <input type="password" name="password" onChange={this.handlePasswordChange}/>
             </Form.Field>
-            <Form.Field>
-            <Checkbox label='I agree to the Terms and Conditions' />
-            </Form.Field>
-            <Button type='submit'>Submit</Button>
+            <div>
+                <input type="submit" value="Log In"/>
+            </div>
         </Form>
     )
    } 
@@ -71,20 +62,3 @@ class Login extends Component {
 export default Login; 
 
 
-
-const FormExampleForm = () => (
-  <Form>
-    <Form.Field>
-      <label>First Name</label>
-      <input placeholder='First Name' />
-    </Form.Field>
-    <Form.Field>
-      <label>Last Name</label>
-      <input placeholder='Last Name' />
-    </Form.Field>
-    <Form.Field>
-      <Checkbox label='I agree to the Terms and Conditions' />
-    </Form.Field>
-    <Button type='submit'>Submit</Button>
-  </Form>
-)
