@@ -52,7 +52,7 @@ class Login extends Component {
             <input type="password" name="password" onChange={this.handlePasswordChange}/>
             </Form.Field>
             <div>
-                <input type="submit" value="Log In"/>
+                <input type="submit" value="Log In" className="submit"/>
             </div>
         </Form>
     )

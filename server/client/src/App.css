@@ -94,6 +94,19 @@
   color: white; 
 }
 
+.submit {
+  padding: 10px;
+}
+
+.submit:hover {
+  background-color: black;
+  color: white;
+}
+
+.submit:active {
+  background-color: #555555 
+}
+
 .summary {
   width: 50%; 
 }
