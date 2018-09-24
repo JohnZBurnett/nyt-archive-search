@@ -1,13 +1,14 @@
 import React, { Component } from 'react'; 
 import { connect } from 'react-redux';
 import axios from 'axios'; 
-import { updateCurrentArticleComments } from '../actions/index'; 
+import { updateArticleComments } from '../actions/index'; 
 
 function mapStateToProps(state) {
     return(
         {
             currentArticle: state.currentArticle,
-            auth: state.auth
+            auth: state.auth,
+            articleComments: state.articleComments
         }
     )
 }
@@ -15,7 +16,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return(
         {
-            updateCurrentArticleComments: (article) => dispatch(updateCurrentArticleComments(article))
+            updateArticleComments: (articleComments) => dispatch(updateArticleComments(articleComments))
         }
     )
 }
@@ -37,7 +38,8 @@ class NewCommentBox extends Component {
         }
 
         const commentResult = await axios.post(`http://localhost:5000/api/articlecomments/${this.props.currentArticle._id}`, body);
-        this.props.updateCurrentArticleComments(commentResult); 
+        console.log("COMMENT RESULT: ", commentResult); 
+        this.props.updateArticleComments([...this.props.articleComments, commentResult.data]); 
     }
 
     handleUpdatingCommentForm = (event) => {

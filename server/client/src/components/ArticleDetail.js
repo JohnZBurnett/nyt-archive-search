@@ -102,9 +102,9 @@ class ArticleDetail extends Component {
                 </div>
                 <br/>
                 {/* this.state.pdfUrlFound ? this.getAndRenderPdf() : null */}
-                <div className="article-pdf">
+                { /* <div className="article-pdf">
                     <object data={this.state.pdfUrl} width="500" height="500"></object>
-                </div>
+        </div> */}
                 {<NewCommentBox />}
                 { <CommentList />}
             </div>

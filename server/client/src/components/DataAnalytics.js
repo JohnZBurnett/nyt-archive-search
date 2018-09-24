@@ -222,20 +222,22 @@ class DataAnalytics extends Component {
         
             return(
             <div>
-                <label>Start Month: </label>
-                <select value={this.props.articleStartMonthFilter} onChange={this.handleUpdatingStartMonthFilter}>
-                    {this.generateMonthSelectOptions()}
-                </select>
-                <label>End Month: </label>
-                <select value={this.props.articleEndMonthFilter} onChange={this.handleUpdatingEndMonthFilter}>
-                    {this.generateMonthSelectOptions()}
-                </select>
-                <select onChange={this.handleCategoryChange} value={this.state.currentCategory}>
-                    <option value="persons">Persons</option>
-                    <option value="organizations">Organizations</option>
-                    <option value="subject">Subject</option>
-                    <option value="glocations">Location</option>
-                </select>
+                <div class="keyword-search">
+                    <label>Start Month: </label>
+                    <select value={this.props.articleStartMonthFilter} onChange={this.handleUpdatingStartMonthFilter}>
+                        {this.generateMonthSelectOptions()}
+                    </select>
+                    <label>End Month: </label>
+                    <select value={this.props.articleEndMonthFilter} onChange={this.handleUpdatingEndMonthFilter}>
+                        {this.generateMonthSelectOptions()}
+                    </select>
+                    <select onChange={this.handleCategoryChange} value={this.state.currentCategory}>
+                        <option value="persons">Persons</option>
+                        <option value="organizations">Organizations</option>
+                        <option value="subject">Subject</option>
+                        <option value="glocations">Location</option>
+                    </select>
+                </div>
                 <div id="canvas-div">
                     
                 </div> 
