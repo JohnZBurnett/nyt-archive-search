@@ -93,6 +93,8 @@ class ArticleDetail extends Component {
                 <div className="float-left half-width">
                     <h1 className="headline-font headline">{this.props.article.headline.main}</h1>
                     <p className="typewriter-font summary">SNIPPET: {this.props.article.snippet}</p>
+
+                    <h4>Select a category to save the article to: </h4>
                     <select value={this.state.collectionId} onChange={this.handleCollectionIdChange}>
                         <option value="Placeholder">Please select a value:</option>
                         {this.renderAllUserCollectionsAsSelectOptions()}
@@ -105,6 +107,7 @@ class ArticleDetail extends Component {
                 { /* <div className="article-pdf">
                     <object data={this.state.pdfUrl} width="500" height="500"></object>
         </div> */}
+              <h3>Comments on This Article: </h3>
                 {<NewCommentBox />}
                 { <CommentList />}
             </div>

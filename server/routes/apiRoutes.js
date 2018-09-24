@@ -94,7 +94,13 @@ module.exports = (app) => {
     app.get('/api/articlecomments', async(req, res) => {
         const comments = await Comment.find({
 
-        });
+        }); 
+        Comment.findOne({}).populate('users', 'username').exec( function (err, comment) {
+            if (err) return handleError(err);
+            console.log("WE'RE IN THE POPULATE"); 
+            console.log("POPULATED COMMENT: ", comment); 
+            
+        })
         res.send(comments); 
     })
 

@@ -40,6 +40,9 @@ class NewCommentBox extends Component {
         const commentResult = await axios.post(`http://localhost:5000/api/articlecomments/${this.props.currentArticle._id}`, body);
         console.log("COMMENT RESULT: ", commentResult); 
         this.props.updateArticleComments([...this.props.articleComments, commentResult.data]); 
+        this.setState({
+            newCommentForm: ""
+        })
     }
 
     handleUpdatingCommentForm = (event) => {
