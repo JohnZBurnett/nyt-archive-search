@@ -90,8 +90,11 @@ class ArticleIndex extends Component
     render() {
         return(
             <div className="article-container">
-                <button onClick={this.goToPreviousPageOfArticles}>Previous Page</button>
-                <button onClick={this.goToNextPageOfArticles}>Next Page</button>
+                <div>
+                    <button className="previous-button" onClick={this.goToPreviousPageOfArticles}>Previous Page</button>
+                    <button className="next-button" onClick={this.goToNextPageOfArticles}>Next Page</button>
+                </div>
+                
                 <br />
             <div className="article-card-container">
                 {this.props.articleList.length > 0 ? this.renderArticleCards(this.props.articleList) : "Loading Articles"}

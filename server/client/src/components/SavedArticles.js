@@ -62,7 +62,9 @@ class SavedArticles extends Component {
             this.filterArticleCollectionsForCurrentUserId().map( (articleCollection) => {
                 return (
                  <div key={articleCollection._id}>
-                     <h1>Category: {articleCollection.name} </h1> <button onClick={() => this.handleDeletingCategory(articleCollection._id)}>Delete</button>
+                    <div className="category-header">
+                        <h1>Category: {articleCollection.name} </h1> <button onClick={() => this.handleDeletingCategory(articleCollection._id)}>Delete Category</button>
+                    </div>
                     {this.renderAllArticlesForThisCollection(articleCollection.articles, articles)}
                  </div>
                 )
@@ -112,7 +114,8 @@ class SavedArticles extends Component {
     render() {
         return(
             <div>
-                <input type="text" placeholder="Enter a new category name: " value={this.state.nameForm} onChange={this.handleNameFormChange}/>
+                <h1>Create a new category: </h1>
+                <input type="text" placeholder="Enter a new category name: " value={this.state.nameForm} onChange={this.handleNameFormChange} className="new-category-name"/>
                 <button onClick={this.saveNewCategory}>Save New Category</button>
                 <div>
                     {this.props.articles.length > 0 ? this.renderAllArticleCollectionsForThisUser(this.props.articleCollections, this.props.articles) : null} 
