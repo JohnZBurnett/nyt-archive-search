@@ -95,13 +95,15 @@ module.exports = (app) => {
         const comments = await Comment.find({
 
         }); 
-        Comment.findOne({}).populate('users', 'username').exec( function (err, comment) {
+        console.log("FIRST COMMENT: ", comments[0])
+        Comment.find({}).populate('user', 'username').exec( function (err, comments) {
             if (err) return handleError(err);
             console.log("WE'RE IN THE POPULATE"); 
-            console.log("POPULATED COMMENT: ", comment); 
+            console.log("POPULATED COMMENT: ", comments); 
+            res.send(comments); 
             
         })
-        res.send(comments); 
+        
     })
 
     app.get('/api/articlecomments/:id', async(req, res) => {
