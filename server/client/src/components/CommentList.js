@@ -30,7 +30,7 @@ const CommentList = (props) => {
         return articleComments.filter( comment => {
             console.log("USER: ", comment.user._id);
             console.log("ARTICLE: ", props.currentArticle._id); 
-            return (comment.user._id === props.auth._id && comment.article === props.currentArticle._id)
+            return (comment.article === props.currentArticle._id)
         })
     }
 
