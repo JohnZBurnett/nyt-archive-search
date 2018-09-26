@@ -222,7 +222,7 @@ class DataAnalytics extends Component {
         
             return(
             <div>
-                <div class="keyword-search">
+                <div class="analytics-search">
                     <label>Start Month: </label>
                     <select value={this.props.articleStartMonthFilter} onChange={this.handleUpdatingStartMonthFilter}>
                         {this.generateMonthSelectOptions()}

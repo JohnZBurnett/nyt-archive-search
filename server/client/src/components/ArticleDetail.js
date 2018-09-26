@@ -107,8 +107,8 @@ class ArticleDetail extends Component {
                 { /* <div className="article-pdf">
                     <object data={this.state.pdfUrl} width="500" height="500"></object>
         </div> */}
+                {this.props.currentUserId ? <NewCommentBox /> : null }
               <h3>Comments on This Article: </h3>
-                {<NewCommentBox />}
                 { <CommentList />}
             </div>
         );
