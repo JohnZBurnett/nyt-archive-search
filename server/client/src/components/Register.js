@@ -21,7 +21,7 @@ const Register = () => {
         </div>
     */
 
-   <Form action="/api/login" method="post">
+   <Form action="/api/register" method="post">
     <Form.Field>
         <label>Username:</label>
         <input type="text" name="username" onChange={this.handleUsernameChange}/> 
