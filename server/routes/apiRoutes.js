@@ -7,7 +7,6 @@ const Comment = require('../models/Comment').Comment;
 
 async function getAllArticlesFromDb() {
     const allArticles = await Article.find({
-        "pub_date.month":"01"
     }).lean(); 
     console.log("NUMBER OF ARTICLES FETCHED: ", allArticles.length); 
     return allArticles; 

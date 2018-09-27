@@ -91,9 +91,9 @@ class ArticleDetail extends Component {
         return(
             <div>
                 <div className="float-left half-width">
-                    <h1 className="headline-font">HEADLINE: </h1>
+                    <h1 className="detail-headline-font">HEADLINE: </h1>
                     <br />
-                    <h1 className="headline-font headline">{this.props.article.headline.main}</h1>
+                    <h1 className="detail-headline-font headline">{this.props.article.headline.main}</h1>
                     <p className="typewriter-font summary">SNIPPET: {this.props.article.snippet}</p>
                     <a href={this.props.article.web_url}>Click here to read the article on the NYT Website</a>
                     <h4>Select a category to save the article to: </h4>

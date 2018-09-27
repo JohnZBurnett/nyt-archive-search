@@ -23,10 +23,10 @@ const mapDispatchToProps = function(dispatch) {
 class App extends Component {
   
   componentDidMount() {
-    this.props.fetchArticlesFromApi(); 
     this.props.fetchUser();
     this.props.getArticleCollectionsFromApi(); 
     this.props.getArticleCommentsFromApi(); 
+    this.props.fetchArticlesFromApi(); 
   }
 
   render() {
