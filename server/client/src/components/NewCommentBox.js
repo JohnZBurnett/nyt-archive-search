@@ -58,8 +58,10 @@ class NewCommentBox extends Component {
     render() {
         return(
             <div>
+                <h3> Add a new comment: </h3>
                 <textarea value={this.state.newCommentForm} onChange={this.handleUpdatingCommentForm}>
                 </textarea>
+                <br />
                 <button onClick={this.handleAddingNewComment}>Submit</button>
             </div>
         )

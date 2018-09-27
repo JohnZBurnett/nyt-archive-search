@@ -172,7 +172,11 @@
   padding: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
 
+.nyt-attribution {
+  margin-left: 40%;
+  width: 20%;
 }
 
 .typewriter-font {
